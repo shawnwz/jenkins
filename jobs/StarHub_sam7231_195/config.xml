@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>This job is to sync code to slave 195 </description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.35">
+    <configVersion>2</configVersion>
+    <p4User>swang</p4User>
+    <p4Passwd>0f0kqlwaPlGwk4GaL6Dfa3AlrK8xqw==</p4Passwd>
+    <p4Port>p4-open-prx-bej:1666</p4Port>
+    <p4Client>7231_workspace</p4Client>
+    <projectPath>//OTV_OS/Opentv5/MAIN/... //release_workspace/Opentv5/MAIN/...
+//OTV_OS/Opentv5/toolchains/... //release_workspace/Opentv5/toolchains/...
+//OTV_OS/Opentv5/RELEASE_v5.1.2/CUST/StarHub/Build11_sh21_36/... //release_workspace/Opentv5/RELEASE_v5.1.2/CUST/StarHub/Build11_sh21_36/...
+//OTV_OS/Opentv5/RELEASE_v5.1.2/CUST/StarHub/toolchains... //release_workspace/Opentv5/RELEASE_v5.1.2/CUST/StarHub/toolchains...</projectPath>
+    <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <p4SysDrive></p4SysDrive>
+    <p4SysRoot></p4SysRoot>
+    <p4Tool>p4_usr_local_bin</p4Tool>
+    <useClientSpec>false</useClientSpec>
+    <useStreamDepot>false</useStreamDepot>
+    <forceSync>false</forceSync>
+    <alwaysForceSync>false</alwaysForceSync>
+    <dontUpdateServer>false</dontUpdateServer>
+    <disableAutoSync>false</disableAutoSync>
+    <disableChangeLogOnly>false</disableChangeLogOnly>
+    <disableSyncOnly>false</disableSyncOnly>
+    <showIntegChanges>false</showIntegChanges>
+    <useOldClientName>false</useOldClientName>
+    <createWorkspace>true</createWorkspace>
+    <updateView>true</updateView>
+    <dontRenameClient>false</dontRenameClient>
+    <updateCounterValue>false</updateCounterValue>
+    <dontUpdateClient>false</dontUpdateClient>
+    <exposeP4Passwd>false</exposeP4Passwd>
+    <wipeBeforeBuild>false</wipeBeforeBuild>
+    <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
+    <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
+    <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
+    <firstChange>-1</firstChange>
+    <fileLimit>0</fileLimit>
+    <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
+    <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
+    <lineEndValue>local</lineEndValue>
+    <useViewMask>false</useViewMask>
+    <useViewMaskForPolling>true</useViewMaskForPolling>
+    <useViewMaskForSyncing>false</useViewMaskForSyncing>
+    <useViewMaskForChangeLog>false</useViewMaskForChangeLog>
+    <pollOnlyOnMaster>false</pollOnlyOnMaster>
+  </scm>
+  <assignedNode>195</assignedNode>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>cd $WORKSPACE/Opentv5/MAIN/otvtarg/sam7231_uclibc_bc/
+#source ../set_env_bash.sh
+#make CONFIG_TYPE=starhub_sam7428 BUILD_TYPE=test clean
+#make CONFIG_TYPE=starhub_sam7428 BUILD_TYPE=test
+</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+</project>

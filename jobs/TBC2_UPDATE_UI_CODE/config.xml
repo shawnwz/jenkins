@@ -1,0 +1,310 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.security.AuthorizationMatrixProperty>
+      <permission>hudson.model.Run.Delete:chengye</permission>
+      <permission>hudson.model.Item.Read:chengye</permission>
+      <permission>hudson.model.Item.Discover:anonymous</permission>
+      <permission>hudson.model.Item.Discover:chengye</permission>
+      <permission>com.cloudbees.plugins.credentials.CredentialsProvider.View:chengye</permission>
+      <permission>hudson.model.Item.Build:anonymous</permission>
+      <permission>hudson.model.Item.Build:chengye</permission>
+      <permission>hudson.model.Item.Cancel:chengye</permission>
+      <permission>hudson.model.Item.Workspace:chengye</permission>
+      <permission>hudson.model.Item.Delete:chengye</permission>
+      <permission>hudson.model.Item.Configure:chengye</permission>
+      <permission>hudson.model.Run.Update:chengye</permission>
+    </hudson.security.AuthorizationMatrixProperty>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@1.0.3">
+      <leastLoadDisabled>false</leastLoadDisabled>
+    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
+    <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.2">
+      <optOut>false</optOut>
+    </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>jira_jobs</name>
+          <description></description>
+          <defaultValue>NFXP2-1334-P4DTG</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>source_path</name>
+          <description></description>
+          <defaultValue>/home/slave_dir/workspace/GRAVITY_TBC_MASTER_DAILY_BUILD/src</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>target_path</name>
+          <description></description>
+          <defaultValue>/home/slave_dir/workspace/TBC2_UPDATE_UI_CODE/APAC/TBC/phase2/MAIN/netcfg/tbc/common/apps/gravity_tbc</defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.36">
+    <configVersion>2</configVersion>
+    <p4User>zwang</p4User>
+    <p4Passwd>0f0kqlwaRanDqMklDMTfa3AlrK8xqw==</p4Passwd>
+    <p4Port>p4-open-prx-bej:1666</p4Port>
+    <p4Client>TBC2_UPDATE_UI_CODE_workspace</p4Client>
+    <projectPath>//OTV_CUST_ENG/APAC/CE/CI/EXPERIMENTAL/TBC/phase2/MAIN/... //TBC2_UPDATE_UI_CODE_workspace/APAC/TBC/phase2/MAIN/...</projectPath>
+    <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <p4SysDrive></p4SysDrive>
+    <p4SysRoot></p4SysRoot>
+    <p4Tool>p4_usr_local_bin</p4Tool>
+    <useClientSpec>false</useClientSpec>
+    <useStreamDepot>false</useStreamDepot>
+    <forceSync>false</forceSync>
+    <alwaysForceSync>true</alwaysForceSync>
+    <dontUpdateServer>false</dontUpdateServer>
+    <disableAutoSync>false</disableAutoSync>
+    <disableChangeLogOnly>false</disableChangeLogOnly>
+    <disableSyncOnly>false</disableSyncOnly>
+    <showIntegChanges>false</showIntegChanges>
+    <useOldClientName>false</useOldClientName>
+    <createWorkspace>true</createWorkspace>
+    <updateView>true</updateView>
+    <dontRenameClient>false</dontRenameClient>
+    <updateCounterValue>false</updateCounterValue>
+    <dontUpdateClient>false</dontUpdateClient>
+    <exposeP4Passwd>true</exposeP4Passwd>
+    <wipeBeforeBuild>false</wipeBeforeBuild>
+    <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
+    <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
+    <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
+    <firstChange>-1</firstChange>
+    <fileLimit>0</fileLimit>
+    <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
+    <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
+    <lineEndValue>local</lineEndValue>
+    <useViewMask>false</useViewMask>
+    <useViewMaskForPolling>true</useViewMaskForPolling>
+    <useViewMaskForSyncing>false</useViewMaskForSyncing>
+    <useViewMaskForChangeLog>false</useViewMaskForChangeLog>
+    <pollOnlyOnMaster>false</pollOnlyOnMaster>
+  </scm>
+  <assignedNode>143</assignedNode>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder plugin="conditional-buildstep@1.3.3">
+      <condition class="org.jenkins_ci.plugins.run_condition.core.AlwaysRun" plugin="run-condition@1.0"/>
+      <buildStep class="hudson.tasks.Shell">
+        <command>echo ${P4USER}
+echo ${P4CLIENT}
+echo ${ui_name}
+echo ${serverapps}
+echo ${interactiveapps}
+echo ${autoload}
+echo ${source_path}
+echo ${target_path}
+
+p4 -u $P4USER -c $P4CLIENT login &lt;&lt; EOF
+${P4PASSWD}
+EOF
+p4 -c $P4CLIENT unlock //OTV_CUST_ENG/APAC/CE/CI/EXPERIMENTAL/TBC/phase2/MAIN/...
+#p4 -c $P4CLIENT unlock //OTV_CUST_ENG/APAC/TBC/phase2/MAIN/...
+p4 revert //OTV_CUST_ENG/APAC/CE/CI/EXPERIMENTAL/TBC/phase2/MAIN/...
+#p4 revert //OTV_CUST_ENG/APAC/TBC/phase2/MAIN/...
+
+#p4 -c $P4CLIENT change -o  &gt; c.txt
+cln=$(p4 -c $P4CLIENT change -o | sed -e &quot;s/&lt;.*&gt;/NFXP2-1344:UI integration Reviewed by:none Impact analysis:none Test performed:none /&quot; | sed -e &apos;$a Jobs: NFXP2-1334-P4DTG &apos; | p4 change -i)
+echo $cln
+mychangelist=$(echo $cln | cut -d  &apos; &apos;  -f 2)
+
+function todelete(){
+	echo $1
+    for file in ` ls $1 `
+    do
+        echo &quot;current file is &quot; $file
+        if [ -d $1&quot;/&quot;$file ]
+        then
+             todelete $1&quot;/&quot;$file
+        else
+             echo $1&quot;/&quot;$file | cut -d &apos;/&apos; -f 11-
+             subpath=$(echo $1&quot;/&quot;$file | cut -d &apos;/&apos; -f 15-)
+             echo $subpath
+                if [ -f $COMP_PATH&quot;/&quot;$subpath ]
+                then
+                        echo $subpath is exsiting in the new code.
+                else
+                        echo $subpath is not in the new code, marking for delete...
+                        p4 delete -c $mychangelist $1&quot;/&quot;$file
+                fi
+        fi
+    done
+}
+
+INIT_PATH=$target_path
+COMP_PATH=$source_path
+todelete $INIT_PATH
+
+#INIT_PATH_REL=&quot;./Opentv5/DEVELOP/StarHub/NFX_IPTV2/netcfg/starhub/common/apps/OPTIVA_STARHUB_html_iptv_rel&quot;
+#COMP_PATH=&quot;./Starhub_UI/&quot;${ui_name}_min
+#todelete $INIT_PATH_REL
+
+
+echo &quot;===================================&quot;
+
+
+#\cp -rf ./Starhub_UI/${ui_name}/* ./Opentv5/DEVELOP/StarHub/NFX_IPTV2/netcfg/starhub/common/apps/OPTIVA_STARHUB_html_iptv/
+
+
+function toadd(){
+	echo $1
+    for file in ` ls $1 `
+    do
+        echo &quot;current file is &quot; $file
+        if [ -d $1&quot;/&quot;$file ]
+        then
+             toadd $1&quot;/&quot;$file
+        else
+             echo $1&quot;/&quot;$file | cut -d &apos;/&apos; -f 11-
+             subpath=$(echo $1&quot;/&quot;$file | cut -d &apos;/&apos; -f 7-)
+             echo $subpath
+                if [ -f $COMP_PATH&quot;/&quot;$subpath ]
+                then
+                        echo $subpath is exsiting in the old tree.
+                else
+                        echo $subpath is not in the old tree, copy and marking for add...
+                        
+                        cd $INIT_PATH 
+                        cppath=$(dirname $subpath)
+                        mkdir -p $COMP_PATH&quot;/&quot;$cppath
+                        cp --parents .&quot;/&quot;$subpath $COMP_PATH&quot;/&quot;$cppath
+                        cd -
+
+                        p4 add -c $mychangelist $COMP_PATH&quot;/&quot;$subpath
+                fi
+        fi
+    done
+}
+
+INIT_PATH=$source_path
+COMP_PATH=$target_path
+toadd $INIT_PATH $COMP_PATH
+
+#INIT_PATH=&quot;./Starhub_UI/&quot;${ui_name}_min
+#COMP_PATH=&quot;./Opentv5/DEVELOP/StarHub/NFX_IPTV2/netcfg/starhub/common/apps/OPTIVA_STARHUB_html_iptv_rel&quot;
+#toadd $INIT_PATH
+
+p4 edit -c $mychangelist //OTV_CUST_ENG/APAC/CE/CI/EXPERIMENTAL/TBC/phase2/MAIN/...
+#p4 edit -c $mychangelist //OTV_CUST_ENG/APAC/TBC/phase2/MAIN/...
+#p4 edit -c $mychangelist //OTV_OS/Opentv5/DEVELOP/StarHub/NFX_IPTV2/netcfg/starhub/common/apps/OPTIVA_STARHUB_html_iptv_rel/...
+
+\cp -rf $source_path/* $target_path
+#\cp -rf ./Starhub_UI/${ui_name}_min/* ./Opentv5/DEVELOP/StarHub/NFX_IPTV2/netcfg/starhub/common/apps/OPTIVA_STARHUB_html_iptv_rel/
+
+
+
+#sed -i &quot;s/serverApps228r2/${serverapps}/&quot; ./Opentv5/DEVELOP/StarHub/NFX_IPTV2/netcfg/starhub/common/apps/OPTIVA_STARHUB_html_iptv/client/common/Config.js
+#sed -i &quot;s/interactiveApps228r2/${interactiveapps}/&quot; ./Opentv5/DEVELOP/StarHub/NFX_IPTV2/netcfg/starhub/common/apps/OPTIVA_STARHUB_html_iptv/client/common/Config.js
+#sed -i &quot;s/autoload228r2/${autoload}/&quot; ./Opentv5/DEVELOP/StarHub/NFX_IPTV2/netcfg/starhub/common/apps/OPTIVA_STARHUB_html_iptv/client/common/Config.js
+#echo &quot;going to add secret key to MainMenu.js&quot;
+#sed -i &apos;/$N.apps.core.Log.Config.setDefaultValues(0);/{n;d}&apos; ./Opentv5/DEVELOP/StarHub/NFX_IPTV2/netcfg/starhub/common/apps/OPTIVA_STARHUB_html_iptv/client/apps/mainMenu/MainMenu.js
+#sed -i &apos;/$N.apps.core.Log.Config.setDefaultValues(0);/ r mainmenu_secret_code.txt&apos; ./Opentv5/DEVELOP/StarHub/NFX_IPTV2/netcfg/starhub/common/apps/OPTIVA_STARHUB_html_iptv/client/apps/mainMenu/MainMenu.js
+#sed -i &apos;/$N.app.Config.getConfigValue(&quot;UIEnableLog.pin&quot;)) {/ r 0855_enable.txt&apos; ./Opentv5/DEVELOP/StarHub/NFX_IPTV2/netcfg/starhub/common/apps/OPTIVA_STARHUB_html_iptv/client/apps/mainMenu/MainMenu.js
+#sed -i &apos;/$N.app.Config.getConfigValue(&quot;UIDisableLog.pin&quot;)) {/ r 0855_disable.txt&apos; ./Opentv5/DEVELOP/StarHub/NFX_IPTV2/netcfg/starhub/common/apps/OPTIVA_STARHUB_html_iptv/client/apps/mainMenu/MainMenu.js
+
+#sed -i &quot;s/serverApps228r2/${serverapps}/&quot; ./Opentv5/DEVELOP/StarHub/NFX_IPTV2/netcfg/starhub/common/apps/OPTIVA_STARHUB_html_iptv_rel/client/common/Config.js
+#sed -i &quot;s/interactiveApps228r2/${interactiveapps}/&quot; ./Opentv5/DEVELOP/StarHub/NFX_IPTV2/netcfg/starhub/common/apps/OPTIVA_STARHUB_html_iptv_rel/client/common/Config.js
+#sed -i &quot;s/autoload228r2/${autoload}/&quot; ./Opentv5/DEVELOP/StarHub/NFX_IPTV2/netcfg/starhub/common/apps/OPTIVA_STARHUB_html_iptv_rel/client/common/Config.js
+
+#echo &quot;going to change capacity to 100&quot;
+#sed -i &quot;s/&lt;capacity&gt;50&lt;\/capacity&gt;/&lt;capacity&gt;100&lt;\/capacity&gt;/&quot;  ./Opentv5/DEVELOP/StarHub/NFX_IPTV2/netcfg/starhub/common/apps/OPTIVA_STARHUB_html_iptv_rel/otvwebkit-config.xml
+#sed -i &quot;s/&lt;capacity&gt;50&lt;\/capacity&gt;/&lt;capacity&gt;100&lt;\/capacity&gt;/&quot;  ./Opentv5/DEVELOP/StarHub/NFX_IPTV2/netcfg/starhub/common/apps/OPTIVA_STARHUB_html_iptv/otvwebkit-config.xml
+
+
+#\cp -f ./OTVAppMetadata.xml ./Opentv5/DEVELOP/StarHub/NFX_IPTV2/netcfg/starhub/common/apps/OPTIVA_STARHUB_html_iptv/OTVAppMetadata.xml
+#\cp -f ./OTVAppMetadata.xml ./Opentv5/DEVELOP/StarHub/NFX_IPTV2/netcfg/starhub/common/apps/OPTIVA_STARHUB_html_iptv_rel/OTVAppMetadata.xml
+
+#sed -i &apos;s/src=&quot;..\/O5.js\/O5.js&quot; /src=&quot;..\/O5-legacy.min.js&quot; /&apos; ./Opentv5/DEVELOP/StarHub/NFX_IPTV2/netcfg/starhub/common/apps/OPTIVA_STARHUB_html_iptv/client/launch.html
+
+#p4 submit -c $mychangelist -d &quot;this is my des&quot;  //OTV_CUST_ENG/APAC/CE/CI/EXPERIMENTAL/NFX_IPTV2/netcfg/starhub/common/apps/OPTIVA_STARHUB_html_iptv/...
+p4 submit -c $mychangelist 
+
+#sleep 180
+#o5jscln=$(p4 -c $P4CLIENT change -o | sed -e &quot;s/&lt;.*&gt;/NFXP2-1344:UI integration ${ui_name} Reviewed by:none Impact analysis:none Test performed:none /&quot; | sed -e &apos;$a Jobs: NFXP2-1334-P4DTG &apos; | p4 change -i)
+#echo $o5jscln
+#o5jschangelist=$(echo $o5jscln | cut -d  &apos; &apos;  -f 2)
+#if [ -f &quot;./Opentv5/DEVELOP/StarHub/NFX_IPTV2/netcfg/starhub/common/apps/OPTIVA_STARHUB_html_iptv_rel/O5-legacy.min.js&quot; ]
+#then
+#    \cp -f ./Opentv5/DEVELOP/StarHub/NFX_IPTV2/netcfg/starhub/common/apps/OPTIVA_STARHUB_html_iptv_rel/O5-legacy.min.js ./Opentv5/DEVELOP/StarHub/NFX_IPTV2/netcfg/starhub/common/apps/OPTIVA_STARHUB_html_iptv/O5-legacy.min.js
+
+#else
+#    \cp -f ./O5-legacy.min.js ./Opentv5/DEVELOP/StarHub/NFX_IPTV2/netcfg/starhub/common/apps/OPTIVA_STARHUB_html_iptv/O5-legacy.min.js
+#    \cp -f ./O5-legacy.min.js ./Opentv5/DEVELOP/StarHub/NFX_IPTV2/netcfg/starhub/common/apps/OPTIVA_STARHUB_html_iptv_rel/O5-legacy.min.js
+#    p4 add -c $o5jschangelist ./Opentv5/DEVELOP/StarHub/NFX_IPTV2/netcfg/starhub/common/apps/OPTIVA_STARHUB_html_iptv_rel/O5-legacy.min.js
+#fi
+#p4 add -c $o5jschangelist ./Opentv5/DEVELOP/StarHub/NFX_IPTV2/netcfg/starhub/common/apps/OPTIVA_STARHUB_html_iptv/O5-legacy.min.js
+
+#\cp -f ./Config_cso.js ./Opentv5/DEVELOP/StarHub/NFX_IPTV2/netcfg/starhub/common/apps/OPTIVA_STARHUB_html_iptv/client/common/Config_cso.js
+#p4 add -c $o5jschangelist ./Opentv5/DEVELOP/StarHub/NFX_IPTV2/netcfg/starhub/common/apps/OPTIVA_STARHUB_html_iptv/client/common/Config_cso.js
+#p4 submit -c $o5jschangelist
+
+
+#if [ $shelved_cl != &quot;&quot; ] ; 
+#then ( echo &quot;User specified a shelved changelist, unshelving changelist ($shelved_cl)&quot;;
+#p4 -c $P4CLIENT unshelve -f -s $shelved_cl ;)
+#else ( echo &quot;Not running with a shelved changelist&quot;; ); fi
+</command>
+      </buildStep>
+      <runner class="org.jenkins_ci.plugins.run_condition.BuildStepRunner$Fail" plugin="run-condition@1.0"/>
+    </org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder>
+  </builders>
+  <publishers/>
+  <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.28">
+      <patterns>
+        <hudson.plugins.ws__cleanup.Pattern>
+          <pattern>OTVAppMetadata.xml</pattern>
+          <type>EXCLUDE</type>
+        </hudson.plugins.ws__cleanup.Pattern>
+        <hudson.plugins.ws__cleanup.Pattern>
+          <pattern>Starhub_UI</pattern>
+          <type>INCLUDE</type>
+        </hudson.plugins.ws__cleanup.Pattern>
+        <hudson.plugins.ws__cleanup.Pattern>
+          <pattern>Opentv5</pattern>
+          <type>INCLUDE</type>
+        </hudson.plugins.ws__cleanup.Pattern>
+        <hudson.plugins.ws__cleanup.Pattern>
+          <pattern>mainmenu_secret_code.txt</pattern>
+          <type>EXCLUDE</type>
+        </hudson.plugins.ws__cleanup.Pattern>
+        <hudson.plugins.ws__cleanup.Pattern>
+          <pattern>Config_cso.js</pattern>
+          <type>EXCLUDE</type>
+        </hudson.plugins.ws__cleanup.Pattern>
+        <hudson.plugins.ws__cleanup.Pattern>
+          <pattern>O5-legacy.min.js</pattern>
+          <type>EXCLUDE</type>
+        </hudson.plugins.ws__cleanup.Pattern>
+        <hudson.plugins.ws__cleanup.Pattern>
+          <pattern>0855_enable.txt</pattern>
+          <type>EXCLUDE</type>
+        </hudson.plugins.ws__cleanup.Pattern>
+        <hudson.plugins.ws__cleanup.Pattern>
+          <pattern>0855_disable.txt</pattern>
+          <type>EXCLUDE</type>
+        </hudson.plugins.ws__cleanup.Pattern>
+      </patterns>
+      <deleteDirs>true</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
+  </buildWrappers>
+</project>

@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@1.0.3">
+      <leastLoadDisabled>false</leastLoadDisabled>
+    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <assignedNode>195</assignedNode>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.plugins.python.Python plugin="python@1.3">
+      <command>import time
+import serial
+import sys
+import os
+# configure the serial connections (the parameters differs on the device you are connecting to)
+ser = serial.Serial(
+    port=&apos;/dev/ttyUSB0&apos;,
+    baudrate=115200,
+    timeout=10,
+    parity=serial.PARITY_NONE,
+    stopbits=serial.STOPBITS_ONE,
+    bytesize=serial.EIGHTBITS,
+    xonxoff=False,
+    rtscts=False,
+    dsrdtr=False
+)
+ser.isOpen()
+#ser.write(chr(0x03))
+#try:
+#    ser.write(&apos;reboot \n&apos;)
+#except Exception,ex:
+#    sys.exit(1)
+#time.sleep(1)
+info = &apos;&apos;
+#os.system(&apos;curl -v -u admin:123456 -w &quot;\n&quot; &quot;http://192.168.1.25/gpio/dout/1&quot; -X PUT -d 1&apos;)
+#print &quot;STB power on&quot;
+
+for i in range(1,100000):
+    print &quot;ctrl-c&quot;
+    ser.write(chr(0x03))
+
+#while 1:
+#    line = s.readline()
+
+while ser.inWaiting() &gt; 0:
+    info += ser.read(1)
+print &quot;iiinnnnffffooo ====&quot; + info
+print &quot;iiinnnfffooo end&quot;
+
+if &quot;Automatic startup canceled via Ctrl-C&quot; in info:
+    print &quot;we are in CFE now !!!&quot;
+else:
+    print &quot;something wrong, we are not in CFE !!!&quot;
+    sys.exit(1)
+
+time.sleep(15)
+out = &apos;&apos;
+ser.write(&apos;info \n&apos;)
+while ser.inWaiting() &gt; 0:
+    out += ser.read(1)
+print out
+#if &quot;CFE driver build information&quot; in out:
+#    print &quot;we are in CFE now!!&quot;
+    #sys.exit(0)
+#else:
+#    print &quot;something wrong, we are not in CFE&quot;
+#    sys.exit(1)
+
+#time.sleep(1)
+#t=ser.inWaiting()
+#out=ser.read(t)
+#print &quot;info === &quot; + out
+#ser.flushInput()
+#out = ser.readline()
+#print &quot;####&quot; + out
+ser.close()
+exit()</command>
+    </hudson.plugins.python.Python>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+</project>

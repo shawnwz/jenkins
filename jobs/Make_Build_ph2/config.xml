@@ -1,0 +1,348 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@1.0.3">
+      <leastLoadDisabled>false</leastLoadDisabled>
+    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>CL</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>datetime</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>configtype</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>buildtype</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>target</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>projectroot</name>
+          <description></description>
+          <defaultValue>StarHub_NFX_IPTV_PH2</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>initiator_email</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>buildversion</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>current_changelist</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.1">
+          <name>run_on_node</name>
+          <description></description>
+          <allowedSlaves>
+            <string>slave_144</string>
+            <string>slave_195</string>
+            <string>slave_97</string>
+          </allowedSlaves>
+          <defaultSlaves/>
+          <triggerIfResult>allowMultiSelectionForConcurrentBuilds</triggerIfResult>
+          <allowMultiNodeSelection>true</allowMultiNodeSelection>
+          <triggerConcurrentBuilds>true</triggerConcurrentBuilds>
+          <ignoreOfflineNodes>false</ignoreOfflineNodes>
+          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
+        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>make_clean</name>
+          <description></description>
+          <defaultValue>yes</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>o_debug</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>o_trace</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>o_error</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>is_dailybuild</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>flashbox</name>
+          <description></description>
+          <defaultValue>no</defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>true</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>true</concurrentBuild>
+  <builders>
+    <hudson.plugins.parameterizedtrigger.TriggerBuilder plugin="parameterized-trigger@2.30">
+      <configs>
+        <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+          <configs>
+            <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+              <properties>emailaddress=$initiator_email
+buildtype=$buildtype
+target=$target
+configtype=$configtype
+CL=$CL
+buildversion=$buildversion
+current_changelist=$current_changelist
+run_on_node=$NODE_NAME
+joburl=${BUILD_URL}console</properties>
+            </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+          </configs>
+          <projects>send_email_to_initiator_ph2</projects>
+          <condition>ALWAYS</condition>
+          <triggerWithNoParameters>false</triggerWithNoParameters>
+          <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
+        </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+      </configs>
+    </hudson.plugins.parameterizedtrigger.TriggerBuilder>
+    <hudson.tasks.Shell>
+      <command>echo $CL
+#projectroot=StarHub_NFX_IPTV
+#target=sam7428_uclibc_bc
+#buildtype=release
+#configtype=starhub_sam7428_cso
+#datetime=$(date &apos;+%Y%m%d-%H&apos;)
+echo $projectroot
+echo $target
+echo $buildtype
+echo $configtype
+echo $datetime
+echo $initiator_email
+echo $versionnumber
+echo $o_debug
+echo $o_trace
+echo $o_error
+echo $target
+codedir=/home/slave_dir/workspace/Sync_Code_StarHub_PH2/Opentv5/DEVELOP/StarHub/NFX_IPTV2/otvtarg/$target
+cd $codedir
+source ../set_env_bash.sh
+
+echo &quot;execute clean....&quot;
+make CONFIG_TYPE=$configtype BUILD_TYPE=$buildtype clean
+
+if [ $buildtype = &quot;release&quot; ] ; then
+	make CONFIG_TYPE=$configtype BUILD_TYPE=$buildtype image
+	mkdir -p $WORKSPACE/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER/images_v1/
+	cd $codedir/$buildtype&apos;_&apos;$configtype 
+	cp -r ./images/* $WORKSPACE/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER/images_v1/
+
+	cd $codedir
+	make CONFIG_TYPE=$configtype BUILD_TYPE=$buildtype DEBUG_INIT=1 V2_IMAGE=yes image
+	mkdir -p $WORKSPACE/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER/images_v2/
+	cd $codedir/$buildtype&apos;_&apos;$configtype 
+	cp -r ./images/* $WORKSPACE/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER/images_v2/
+
+elif [ $buildtype = &quot;test&quot; ] ; then
+	make CONFIG_TYPE=$configtype BUILD_TYPE=$buildtype image
+	mkdir -p $WORKSPACE/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER/images/
+	cd $codedir/$buildtype&apos;_&apos;$configtype 
+	cp -r ./images/* $WORKSPACE/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER/images/
+	cp *.img $WORKSPACE/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER/
+elif [ $buildtype = &quot;sdk&quot; ] ; then
+	make CONFIG_TYPE=$configtype BUILD_TYPE=$buildtype image
+	mkdir -p $WORKSPACE/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER/images/
+	cd $codedir/$buildtype&apos;_&apos;$configtype 
+	cp -r ./images/* $WORKSPACE/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER/images/
+	cp *.img $WORKSPACE/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER/
+fi
+	
+#cp *.img $WORKSPACE/$projectroot/$datetime/$buildtype&apos;_&apos;$configtype/
+</command>
+    </hudson.tasks.Shell>
+    <com.etas.jenkins.plugins.CreateTextFile.CreateFileBuilder plugin="text-file-operations@1.2.1">
+      <textFilePath>${WORKSPACE}/${projectroot}/${buildtype}_${configtype}/${BUILD_NUMBER}/readme.txt</textFilePath>
+      <textFileContent>Initiator = $initiator_email
+BuildType = $buildtype
+ConfigType = $configtype
+Last cl = $CL
+Current CL= $current_changelist
+Build Version = $buildversion
+Target = $target
+Machine = $NODE_NAME
+make_clean = $make_clean</textFileContent>
+      <fileOption>overWrite</fileOption>
+    </com.etas.jenkins.plugins.CreateTextFile.CreateFileBuilder>
+    <org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder plugin="conditional-buildstep@1.3.3">
+      <condition class="org.jenkins_ci.plugins.run_condition.core.StringsMatchCondition" plugin="run-condition@1.0">
+        <arg1>$flashbox</arg1>
+        <arg2>yes</arg2>
+        <ignoreCase>false</ignoreCase>
+      </condition>
+      <buildStep class="hudson.plugins.parameterizedtrigger.TriggerBuilder" plugin="parameterized-trigger@2.30">
+        <configs>
+          <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+            <configs>
+              <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+                <properties>buildtype=$buildtype
+configtype=$configtype
+buildnumber=$BUILD_NUMBER</properties>
+              </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+            </configs>
+            <projects>flash_trigger</projects>
+            <condition>ALWAYS</condition>
+            <triggerWithNoParameters>false</triggerWithNoParameters>
+            <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
+          </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+        </configs>
+      </buildStep>
+      <runner class="org.jenkins_ci.plugins.run_condition.BuildStepRunner$Fail" plugin="run-condition@1.0"/>
+    </org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder>
+  </builders>
+  <publishers>
+    <jenkins.plugins.publish__over__ftp.BapFtpPublisherPlugin plugin="publish-over-ftp@1.11">
+      <consolePrefix>FTP: </consolePrefix>
+      <delegate>
+        <publishers>
+          <jenkins.plugins.publish__over__ftp.BapFtpPublisher>
+            <configName>ftp_master</configName>
+            <verbose>false</verbose>
+            <transfers>
+              <jenkins.plugins.publish__over__ftp.BapFtpTransfer>
+                <remoteDirectory>StarHub_NFX_IPTV_PH2/</remoteDirectory>
+                <sourceFiles>**/StarHub_NFX_IPTV_PH2/**</sourceFiles>
+                <excludes></excludes>
+                <removePrefix>StarHub_NFX_IPTV_PH2</removePrefix>
+                <remoteDirectorySDF>false</remoteDirectorySDF>
+                <flatten>false</flatten>
+                <cleanRemote>false</cleanRemote>
+                <noDefaultExcludes>false</noDefaultExcludes>
+                <makeEmptyDirs>false</makeEmptyDirs>
+                <patternSeparator>[, ]+</patternSeparator>
+                <asciiMode>false</asciiMode>
+              </jenkins.plugins.publish__over__ftp.BapFtpTransfer>
+            </transfers>
+            <useWorkspaceInPromotion>false</useWorkspaceInPromotion>
+            <usePromotionTimestamp>false</usePromotionTimestamp>
+          </jenkins.plugins.publish__over__ftp.BapFtpPublisher>
+        </publishers>
+        <continueOnError>false</continueOnError>
+        <failOnError>false</failOnError>
+        <alwaysPublishFromMaster>false</alwaysPublishFromMaster>
+        <hostConfigurationAccess class="jenkins.plugins.publish_over_ftp.BapFtpPublisherPlugin" reference="../.."/>
+      </delegate>
+    </jenkins.plugins.publish__over__ftp.BapFtpPublisherPlugin>
+    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57.2">
+      <recipientList>$initiator_email, bcc: $DEFAULT_RECIPIENTS, hongliang.li@nagra.com</recipientList>
+      <configuredTriggers>
+        <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
+          <email>
+            <subject>$PROJECT_DEFAULT_SUBJECT</subject>
+            <body>$PROJECT_DEFAULT_CONTENT</body>
+            <recipientProviders>
+              <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
+            </recipientProviders>
+            <attachmentsPattern></attachmentsPattern>
+            <attachBuildLog>false</attachBuildLog>
+            <compressBuildLog>false</compressBuildLog>
+            <replyTo>$PROJECT_DEFAULT_REPLYTO</replyTo>
+            <contentType>project</contentType>
+          </email>
+        </hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
+        <hudson.plugins.emailext.plugins.trigger.FirstFailureTrigger>
+          <email>
+            <recipientList>hongliang.li@nagra.com, zhe.wang@nagra.com, wentao.ma@nagra.com</recipientList>
+            <subject>Starhub PH2 Build: ${buildtype}_${configtype} #${BUILD_NUMBER} - $BUILD_STATUS</subject>
+            <body>please see attached log.
+${buildtype}_${configtype} #${BUILD_NUMBER} - $BUILD_STATUS
+Last change list is $CL
+current change list is $current_changelist
+Build version is  $buildversion
+Machine: $NODE_NAME</body>
+            <recipientProviders/>
+            <attachmentsPattern></attachmentsPattern>
+            <attachBuildLog>true</attachBuildLog>
+            <compressBuildLog>true</compressBuildLog>
+            <replyTo>$PROJECT_DEFAULT_REPLYTO</replyTo>
+            <contentType>project</contentType>
+          </email>
+          <failureCount>0</failureCount>
+        </hudson.plugins.emailext.plugins.trigger.FirstFailureTrigger>
+      </configuredTriggers>
+      <contentType>default</contentType>
+      <defaultSubject>Starhub PH2 Build: ${buildtype}_${configtype} #${BUILD_NUMBER} - $BUILD_STATUS</defaultSubject>
+      <defaultContent>${buildtype}_${configtype} #${BUILD_NUMBER} - $BUILD_STATUS
+Last change list is $CL
+current change list is $current_changelist
+Build version is  $buildversion
+FTP  ftp://10.12.2.195/../../../builds/StarHub_NFX_IPTV_PH2/${buildtype}_${configtype}/${BUILD_NUMBER}
+Machine: $NODE_NAME
+make_clean = $make_clean
+Samba  \\10.12.2.195\builds\</defaultContent>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript>$DEFAULT_PRESEND_SCRIPT</presendScript>
+      <postsendScript></postsendScript>
+      <attachBuildLog>true</attachBuildLog>
+      <compressBuildLog>true</compressBuildLog>
+      <replyTo>$DEFAULT_REPLYTO</replyTo>
+      <saveOutput>false</saveOutput>
+      <disabled>false</disabled>
+    </hudson.plugins.emailext.ExtendedEmailPublisher>
+    <org.jenkinsci.plugins.postbuildscript.PostBuildScript plugin="postbuildscript@0.17">
+      <buildSteps>
+        <hudson.tasks.Shell>
+          <command>codedir=/home/slave_dir/workspace/Sync_Code_StarHub_PH2/Opentv5/DEVELOP/StarHub/NFX_IPTV2/otvtarg/$target
+cd $codedir
+echo &quot;Post build action ... execute clean....&quot;
+make CONFIG_TYPE=$configtype BUILD_TYPE=$buildtype clean</command>
+        </hudson.tasks.Shell>
+      </buildSteps>
+      <scriptOnlyIfSuccess>false</scriptOnlyIfSuccess>
+      <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
+      <markBuildUnstable>false</markBuildUnstable>
+    </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.28">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
+    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.5.1">
+      <template>${initiator_email}_${buildtype}_${configtype}_#${BUILD_NUMBER}</template>
+    </org.jenkinsci.plugins.buildnamesetter.BuildNameSetter>
+  </buildWrappers>
+</project>

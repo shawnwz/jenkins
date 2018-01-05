@@ -1,0 +1,550 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson>
+  <disabledAdministrativeMonitors/>
+  <version>1.646</version>
+  <numExecutors>2</numExecutors>
+  <mode>NORMAL</mode>
+  <useSecurity>true</useSecurity>
+  <authorizationStrategy class="hudson.security.ProjectMatrixAuthorizationStrategy">
+    <permission>com.cloudbees.plugins.credentials.CredentialsProvider.Create:swang</permission>
+    <permission>com.cloudbees.plugins.credentials.CredentialsProvider.Delete:swang</permission>
+    <permission>com.cloudbees.plugins.credentials.CredentialsProvider.ManageDomains:swang</permission>
+    <permission>com.cloudbees.plugins.credentials.CredentialsProvider.Update:swang</permission>
+    <permission>com.cloudbees.plugins.credentials.CredentialsProvider.View:swang</permission>
+    <permission>hudson.model.Computer.Build:swang</permission>
+    <permission>hudson.model.Computer.Configure:swang</permission>
+    <permission>hudson.model.Computer.Connect:swang</permission>
+    <permission>hudson.model.Computer.Create:swang</permission>
+    <permission>hudson.model.Computer.Delete:swang</permission>
+    <permission>hudson.model.Computer.Disconnect:swang</permission>
+    <permission>hudson.model.Hudson.Administer:swang</permission>
+    <permission>hudson.model.Hudson.ConfigureUpdateCenter:swang</permission>
+    <permission>hudson.model.Hudson.Read:anonymous</permission>
+    <permission>hudson.model.Hudson.Read:swang</permission>
+    <permission>hudson.model.Hudson.Read:xiuyu</permission>
+    <permission>hudson.model.Hudson.RunScripts:swang</permission>
+    <permission>hudson.model.Hudson.UploadPlugins:swang</permission>
+    <permission>hudson.model.Item.Build:swang</permission>
+    <permission>hudson.model.Item.Build:xiuyu</permission>
+    <permission>hudson.model.Item.Cancel:swang</permission>
+    <permission>hudson.model.Item.Cancel:xiuyu</permission>
+    <permission>hudson.model.Item.Configure:swang</permission>
+    <permission>hudson.model.Item.Configure:xiuyu</permission>
+    <permission>hudson.model.Item.Create:swang</permission>
+    <permission>hudson.model.Item.Create:xiuyu</permission>
+    <permission>hudson.model.Item.Delete:swang</permission>
+    <permission>hudson.model.Item.Delete:xiuyu</permission>
+    <permission>hudson.model.Item.Discover:swang</permission>
+    <permission>hudson.model.Item.Discover:xiuyu</permission>
+    <permission>hudson.model.Item.Read:swang</permission>
+    <permission>hudson.model.Item.Read:xiuyu</permission>
+    <permission>hudson.model.Item.Workspace:swang</permission>
+    <permission>hudson.model.Item.Workspace:xiuyu</permission>
+    <permission>hudson.model.Run.Delete:swang</permission>
+    <permission>hudson.model.Run.Delete:xiuyu</permission>
+    <permission>hudson.model.Run.Update:swang</permission>
+    <permission>hudson.model.Run.Update:xiuyu</permission>
+    <permission>hudson.model.View.Configure:swang</permission>
+    <permission>hudson.model.View.Configure:xiuyu</permission>
+    <permission>hudson.model.View.Create:swang</permission>
+    <permission>hudson.model.View.Create:xiuyu</permission>
+    <permission>hudson.model.View.Delete:swang</permission>
+    <permission>hudson.model.View.Delete:xiuyu</permission>
+    <permission>hudson.model.View.Read:swang</permission>
+    <permission>hudson.model.View.Read:xiuyu</permission>
+    <permission>hudson.scm.SCM.Tag:swang</permission>
+    <permission>hudson.scm.SCM.Tag:xiuyu</permission>
+  </authorizationStrategy>
+  <securityRealm class="hudson.security.HudsonPrivateSecurityRealm">
+    <disableSignup>false</disableSignup>
+    <enableCaptcha>false</enableCaptcha>
+  </securityRealm>
+  <disableRememberMe>false</disableRememberMe>
+  <projectNamingStrategy class="jenkins.model.ProjectNamingStrategy$DefaultProjectNamingStrategy"/>
+  <workspaceDir>${ITEM_ROOTDIR}/workspace</workspaceDir>
+  <buildsDir>${ITEM_ROOTDIR}/builds</buildsDir>
+  <markupFormatter class="hudson.markup.EscapedMarkupFormatter"/>
+  <jdks/>
+  <viewsTabBar class="hudson.views.DefaultViewsTabBar"/>
+  <myViewsTabBar class="hudson.views.DefaultMyViewsTabBar"/>
+  <clouds/>
+  <quietPeriod>5</quietPeriod>
+  <scmCheckoutRetryCount>0</scmCheckoutRetryCount>
+  <views>
+    <hudson.model.AllView>
+      <owner class="hudson" reference="../../.."/>
+      <name>All</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+    </hudson.model.AllView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>Flash_7231</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>boot_cfe_7231</string>
+        <string>boot_cfe_7231_second</string>
+        <string>boot_kernel_7231</string>
+        <string>flash_main</string>
+        <string>run_secutil</string>
+        <string>test_python</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+        <hudson.plugins.projectstats.column.NumBuildsColumn plugin="project-stats-plugin@0.4"/>
+      </columns>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>StarHub_7428_ph1</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView/jobNames/comparator"/>
+        <string>BUILD_ALL</string>
+        <string>BUILD_ON_DEMAND</string>
+        <string>BUILD_ON_DEMAND_7428</string>
+        <string>Build_TEST</string>
+        <string>daily_build</string>
+        <string>Make_Build</string>
+        <string>Make_Build_7428</string>
+        <string>Make_Build_LOG</string>
+        <string>send_email_on_build_failure</string>
+        <string>send_email_to_initiator</string>
+        <string>Sync_Code_StarHub_PH1</string>
+        <string>Sync_Code_StarHub_PH1_LOG</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+        <hudson.plugins.projectstats.column.NumBuildsColumn plugin="project-stats-plugin@0.4"/>
+      </columns>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>StarHub_ph2</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>BUILD_ON_DEMAND_PH2</string>
+        <string>Make_Build_ph2</string>
+        <string>Sync_Code_StarHub_PH2</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+        <hudson.plugins.projectstats.column.NumBuildsColumn plugin="project-stats-plugin@0.4"/>
+      </columns>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>HDI_CABLE_P22</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>BUILD_ON_DEMAND_CABLEP22</string>
+        <string>daily_build_cable_p22</string>
+        <string>Make_Build_P22</string>
+        <string>send_email_to_initiator_cable_p22</string>
+        <string>Sync_Code_P22</string>
+        <string>Sync_Code_P22_Toolchain</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+        <hudson.plugins.projectstats.column.NumBuildsColumn plugin="project-stats-plugin@0.4"/>
+      </columns>
+      <recurse>false</recurse>
+    </listView>
+    <hudson.plugins.sectioned__view.SectionedView plugin="sectioned-view@1.20">
+      <owner class="hudson" reference="../../.."/>
+      <name>buildview</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <sections>
+        <hudson.plugins.sectioned__view.ListViewSection>
+          <jobNames>
+            <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../../../listView[4]/jobNames/comparator"/>
+            <string>BUILD_ON_DEMAND</string>
+            <string>BUILD_ON_DEMAND_7428</string>
+          </jobNames>
+          <jobFilters/>
+          <name>ON DEMAND BUILD StarHub Phase 1 </name>
+          <width>FULL</width>
+          <alignment>CENTER</alignment>
+          <columns>
+            <hudson.views.StatusColumn/>
+            <hudson.views.WeatherColumn/>
+            <hudson.views.JobColumn/>
+            <hudson.views.LastSuccessColumn/>
+            <hudson.views.LastFailureColumn/>
+            <hudson.views.LastDurationColumn/>
+            <hudson.views.BuildButtonColumn/>
+          </columns>
+        </hudson.plugins.sectioned__view.ListViewSection>
+        <hudson.plugins.sectioned__view.ListViewSection>
+          <jobNames>
+            <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../../../listView[4]/jobNames/comparator"/>
+            <string>BUILD_ON_DEMAND_PH2</string>
+          </jobNames>
+          <jobFilters/>
+          <name>ON DEMAND BUILD StarHub Phase 2</name>
+          <width>FULL</width>
+          <alignment>CENTER</alignment>
+          <columns>
+            <hudson.views.StatusColumn/>
+            <hudson.views.WeatherColumn/>
+            <hudson.views.JobColumn/>
+            <hudson.views.LastSuccessColumn/>
+            <hudson.views.LastFailureColumn/>
+            <hudson.views.LastDurationColumn/>
+            <hudson.views.BuildButtonColumn/>
+          </columns>
+        </hudson.plugins.sectioned__view.ListViewSection>
+        <hudson.plugins.sectioned__view.ListViewSection>
+          <jobNames>
+            <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../../../listView[4]/jobNames/comparator"/>
+            <string>BUILD_ON_DEMAND_CABLEP22</string>
+          </jobNames>
+          <jobFilters/>
+          <name>ON DEMAND BUILD HDI_CABLE_P22</name>
+          <width>FULL</width>
+          <alignment>CENTER</alignment>
+          <columns>
+            <hudson.views.StatusColumn/>
+            <hudson.views.WeatherColumn/>
+            <hudson.views.JobColumn/>
+            <hudson.views.LastSuccessColumn/>
+            <hudson.views.LastFailureColumn/>
+            <hudson.views.LastDurationColumn/>
+            <hudson.views.BuildButtonColumn/>
+          </columns>
+        </hudson.plugins.sectioned__view.ListViewSection>
+      </sections>
+    </hudson.plugins.sectioned__view.SectionedView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>CABLE_P22_ECN</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView[4]/jobNames/comparator"/>
+        <string>BUILD_ON_DEMAND_CABLEP22_ECN</string>
+        <string>Make_Build_P22_ECN</string>
+        <string>send_email_to_initiator_cable_p22_ecn</string>
+        <string>Sync_Code_P22_ECN</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+        <hudson.plugins.projectstats.column.NumBuildsColumn plugin="project-stats-plugin@0.4"/>
+      </columns>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>Flash_Box</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>auto_test</string>
+        <string>break_into_cfe</string>
+        <string>flash_the_box</string>
+        <string>flash_the_box_7231</string>
+        <string>flash_the_box_7231_lcab</string>
+        <string>flash_trigger</string>
+        <string>power_off_stb</string>
+        <string>power_on_stb</string>
+        <string>send_notification</string>
+        <string>start_up_stb</string>
+        <string>test_step</string>
+        <string>upload_epg</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+        <hudson.plugins.projectstats.column.NumBuildsColumn plugin="project-stats-plugin@0.4"/>
+      </columns>
+      <recurse>false</recurse>
+    </listView>
+    <au.com.centrumsystems.hudson.plugin.buildpipeline.BuildPipelineView plugin="build-pipeline-plugin@1.5.4">
+      <owner class="hudson" reference="../../.."/>
+      <name>pipeline</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <gridBuilder class="au.com.centrumsystems.hudson.plugin.buildpipeline.DownstreamProjectGridBuilder">
+        <firstJobLink></firstJobLink>
+      </gridBuilder>
+      <noOfDisplayedBuilds>1</noOfDisplayedBuilds>
+      <buildViewTitle></buildViewTitle>
+      <consoleOutputLinkStyle>Lightbox</consoleOutputLinkStyle>
+      <cssUrl></cssUrl>
+      <triggerOnlyLatestJob>false</triggerOnlyLatestJob>
+      <alwaysAllowManualTrigger>false</alwaysAllowManualTrigger>
+      <showPipelineParameters>false</showPipelineParameters>
+      <showPipelineParametersInHeaders>false</showPipelineParametersInHeaders>
+      <startsWithParameters>false</startsWithParameters>
+      <refreshFrequency>3</refreshFrequency>
+      <showPipelineDefinitionHeader>false</showPipelineDefinitionHeader>
+    </au.com.centrumsystems.hudson.plugin.buildpipeline.BuildPipelineView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>StarHub_ph2_NEW</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>make_daily_build_ph2</string>
+        <string>make_ph2_release</string>
+        <string>make_ph2_svg</string>
+        <string>make_ph2_test</string>
+        <string>Make_SHBNFX_PH2_Build</string>
+        <string>Make_SHBNFX_PH2_Maintenance_Branch_ON_DEMAND</string>
+        <string>Make_SHBNFX_PH2_Maintenance_Build</string>
+        <string>Make_SHBNFX_PH2_ON_DEMAND</string>
+        <string>Make_SHBNFX_PH2_Release_Branch_ON_DEMAND</string>
+        <string>Make_SHBNFX_PH2_Release_Build</string>
+        <string>QE_auto_test</string>
+        <string>send_email_to_initiator_ph2</string>
+        <string>TEST_FTP</string>
+        <string>UPDATE_UI_CODE</string>
+        <string>z_make_7231_release</string>
+        <string>z_make_7231_test</string>
+        <string>z_make_7428_release</string>
+        <string>z_make_7428_test</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+        <hudson.plugins.projectstats.column.NumBuildsColumn plugin="project-stats-plugin@0.4"/>
+      </columns>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>VTV_2</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>Make_Build_VTV2</string>
+        <string>Make_VTV_PH2_ON_DEMAND</string>
+        <string>send_email_to_initiator_vtv2</string>
+        <string>vtv2_daily_build</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+        <hudson.plugins.projectstats.column.NumBuildsColumn plugin="project-stats-plugin@0.4"/>
+      </columns>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>TBC_phase_2</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView[8]/jobNames/comparator"/>
+        <string>Make_Build_TBC2</string>
+        <string>Make_Build_TBC2_Perforce</string>
+        <string>Make_TBC_PH2_ON_DEMAND</string>
+        <string>Make_TBC_PH2_PERFORCE_ON_DEMAND</string>
+        <string>QE_auto_test_TBC_phase2</string>
+        <string>send_email_to_initiator_tbc2</string>
+        <string>TBC2_daily_build</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+        <hudson.plugins.projectstats.column.NumBuildsColumn plugin="project-stats-plugin@0.4"/>
+      </columns>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>sync_toolchains</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView[8]/jobNames/comparator"/>
+        <string>Sync_dl</string>
+        <string>Sync_Toolchains</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+        <hudson.plugins.projectstats.column.NumBuildsColumn plugin="project-stats-plugin@0.4"/>
+      </columns>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>TBC_GRAVITY_DAILY_BUILD</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>GRAVITY_TBC_MASTER_DAILY_BUILD</string>
+        <string>TBC2_UPDATE_UI_CODE</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+        <hudson.plugins.projectstats.column.NumBuildsColumn plugin="project-stats-plugin@0.4"/>
+      </columns>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>CABLE_LOWCOST</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator"/>
+        <string>cable_lowcost_daily_build</string>
+        <string>Make_SHB_LCAB_Build</string>
+        <string>Make_SHB_LCAB_ON_DEMAND</string>
+        <string>send_email_to_initiator_cable_rtf</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+        <hudson.plugins.projectstats.column.NumBuildsColumn plugin="project-stats-plugin@0.4"/>
+      </columns>
+      <recurse>false</recurse>
+    </listView>
+    <listView>
+      <owner class="hudson" reference="../../.."/>
+      <name>Foxtel</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+      <jobNames>
+        <comparator class="hudson.util.CaseInsensitiveComparator" reference="../../../listView[12]/jobNames/comparator"/>
+        <string>check_foxtel_UI</string>
+        <string>make_daily_build_foxtel_demo</string>
+        <string>make_daily_build_foxtel_demo_ui</string>
+        <string>Make_Foxtel_Demo_Build</string>
+        <string>Make_Foxtel_Demo_Build_UI</string>
+        <string>Make_Foxtel_Demo_ON_DEMAND</string>
+        <string>Make_Foxtel_Demo_ON_DEMAND_UI</string>
+        <string>send_email_to_initiator_foxtel</string>
+        <string>trigger_foxtel_auto_script</string>
+      </jobNames>
+      <jobFilters/>
+      <columns>
+        <hudson.views.StatusColumn/>
+        <hudson.views.WeatherColumn/>
+        <hudson.views.JobColumn/>
+        <hudson.views.LastSuccessColumn/>
+        <hudson.views.LastFailureColumn/>
+        <hudson.views.LastDurationColumn/>
+        <hudson.views.BuildButtonColumn/>
+        <hudson.plugins.projectstats.column.NumBuildsColumn plugin="project-stats-plugin@0.4"/>
+      </columns>
+      <recurse>false</recurse>
+    </listView>
+  </views>
+  <primaryView>All</primaryView>
+  <slaveAgentPort>0</slaveAgentPort>
+  <label>master</label>
+  <nodeProperties/>
+  <globalNodeProperties/>
+</hudson>

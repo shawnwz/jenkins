@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jenkins.plugins.publish__over__ftp.BapFtpPublisherPlugin_-Descriptor plugin="publish-over-ftp@1.11">
+  <hostConfigurations>
+    <jenkins.plugins.publish__over__ftp.BapFtpHostConfiguration>
+      <name>ftp_master</name>
+      <hostname>10.12.2.195</hostname>
+      <username>swang</username>
+      <secretPassword>Pkv9uAicQRRC2oYgapoqwA6gIpw9IgcWy6eYy6h57pc=</secretPassword>
+      <remoteRootDir>/var/ftp/builds</remoteRootDir>
+      <port>21</port>
+      <timeout>300000</timeout>
+      <useActiveData>false</useActiveData>
+      <disableMakeNestedDirs>false</disableMakeNestedDirs>
+      <disableRemoteVerification>false</disableRemoteVerification>
+    </jenkins.plugins.publish__over__ftp.BapFtpHostConfiguration>
+  </hostConfigurations>
+  <defaults class="jenkins.plugins.publish_over_ftp.options.FtpPluginDefaults"/>
+</jenkins.plugins.publish__over__ftp.BapFtpPublisherPlugin_-Descriptor>

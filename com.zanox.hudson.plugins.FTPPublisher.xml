@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<com.zanox.hudson.plugins.FTPPublisher_-DescriptorImpl plugin="ftppublisher@1.2">
+  <sites>
+    <com.zanox.hudson.plugins.FTPSite>
+      <profileName>ftp_master</profileName>
+      <hostname>10.12.2.195</hostname>
+      <timeOut>30000</timeOut>
+      <port>21</port>
+      <username>swang</username>
+      <password>opentv123</password>
+      <ftpDir>/var/ftp/builds</ftpDir>
+    </com.zanox.hudson.plugins.FTPSite>
+  </sites>
+  <flattenFilesSelectedByDefault>false</flattenFilesSelectedByDefault>
+</com.zanox.hudson.plugins.FTPPublisher_-DescriptorImpl>

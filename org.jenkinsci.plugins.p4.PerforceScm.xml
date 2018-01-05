@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<org.jenkinsci.plugins.p4.PerforceScm_-DescriptorImpl plugin="p4@1.3.5">
+  <generation>1</generation>
+</org.jenkinsci.plugins.p4.PerforceScm_-DescriptorImpl>

@@ -1,0 +1,264 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.security.AuthorizationMatrixProperty>
+      <permission>hudson.model.Item.Read:anonymous</permission>
+      <permission>hudson.model.Item.Cancel:anonymous</permission>
+    </hudson.security.AuthorizationMatrixProperty>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@1.0.3">
+      <leastLoadDisabled>false</leastLoadDisabled>
+    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>CL</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>datetime</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>configtype</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>buildtype</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>target</name>
+          <description></description>
+          <defaultValue>sam7231_uclibc_bc</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>projectroot</name>
+          <description></description>
+          <defaultValue>HDI_CABLE_P22</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>initiator_email</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>buildversion</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>current_changelist</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition plugin="nodelabelparameter@1.7.1">
+          <name>run_on_node</name>
+          <description></description>
+          <allowedSlaves>
+            <string>slave_144</string>
+            <string>slave_195</string>
+            <string>slave_97</string>
+          </allowedSlaves>
+          <defaultSlaves/>
+          <triggerIfResult>allowMultiSelectionForConcurrentBuilds</triggerIfResult>
+          <allowMultiNodeSelection>true</allowMultiNodeSelection>
+          <triggerConcurrentBuilds>true</triggerConcurrentBuilds>
+          <ignoreOfflineNodes>false</ignoreOfflineNodes>
+          <nodeEligibility class="org.jvnet.jenkins.plugins.nodelabelparameter.node.AllNodeEligibility"/>
+        </org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>make_clean</name>
+          <description></description>
+          <defaultValue>yes</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>o_debug</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>o_trace</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>o_error</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>true</concurrentBuild>
+  <builders>
+    <hudson.plugins.parameterizedtrigger.TriggerBuilder plugin="parameterized-trigger@2.30">
+      <configs>
+        <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+          <configs>
+            <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+              <properties>emailaddress=$initiator_email
+buildtype=$buildtype
+target=$target
+configtype=$configtype
+CL=$CL
+buildversion=$buildversion
+current_changelist=$current_changelist
+run_on_node=$NODE_NAME
+joburl=${BUILD_URL}console</properties>
+            </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+          </configs>
+          <projects>send_email_to_initiator_cable_p22</projects>
+          <condition>ALWAYS</condition>
+          <triggerWithNoParameters>false</triggerWithNoParameters>
+          <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
+        </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+      </configs>
+    </hudson.plugins.parameterizedtrigger.TriggerBuilder>
+    <hudson.tasks.Shell>
+      <command>echo $CL
+#projectroot=StarHub_NFX_IPTV
+#target=sam7428_uclibc_bc
+#buildtype=release
+#configtype=starhub_sam7428_cso
+#datetime=$(date &apos;+%Y%m%d-%H&apos;)
+echo $projectroot
+echo $target
+echo $buildtype
+echo $configtype
+echo $datetime
+echo $initiator_email
+echo $versionnumber
+echo $o_debug
+echo $o_trace
+echo $o_error
+echo $target
+codedir=/home/slave_dir/workspace/Sync_Code_P22/Opentv5/DEVELOP/StarHub/HDI_CABLE_P22/otvtarg/$target
+cd $codedir
+source ../set_env_bash.sh
+if [ $make_clean = &quot;yes&quot; ] ; then
+	echo &quot;execute clean....&quot;
+	make CONFIG_TYPE=$configtype BUILD_TYPE=$buildtype clean
+fi
+
+if [ $buildtype = &quot;release&quot; ] ; then
+	make CONFIG_TYPE=$configtype BUILD_TYPE=$buildtype DEBUG_INIT=1 image
+	mkdir -p $WORKSPACE/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER/images_v1/
+    mkdir -p /home/builds/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER/images_v1/
+	cd $codedir/$buildtype&apos;_&apos;$configtype 
+	cp -r ./images/* $WORKSPACE/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER/images_v1/
+    cp -r ./images/* /home/builds/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER/images_v1/
+
+	cd $codedir
+	make CONFIG_TYPE=$configtype BUILD_TYPE=$buildtype DEBUG_INIT=1 V2_IMAGE=yes image
+	mkdir -p $WORKSPACE/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER/images_v2/
+    mkdir -p /home/builds/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER/images_v2/
+	cd $codedir/$buildtype&apos;_&apos;$configtype 
+	cp -r ./images/* $WORKSPACE/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER/images_v2/
+    cp -r ./images/* /home/builds/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER/images_v2/
+
+elif [ $buildtype = &quot;test&quot; ] ; then
+	make CONFIG_TYPE=$configtype BUILD_TYPE=$buildtype image
+	mkdir -p $WORKSPACE/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER/images/
+    mkdir -p /home/builds/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER/images/
+	cd $codedir/$buildtype&apos;_&apos;$configtype 
+	cp -r ./images/* $WORKSPACE/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER/images/
+    cp -r ./images/* /home/builds/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER/images/
+	cp *.img $WORKSPACE/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER/
+    cp *.img /home/builds/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER/
+elif [ $buildtype = &quot;sdk&quot; ] ; then
+	make CONFIG_TYPE=$configtype BUILD_TYPE=$buildtype image
+	mkdir -p $WORKSPACE/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER/images/
+    mkdir -p /home/builds/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER/images/
+	cd $codedir/$buildtype&apos;_&apos;$configtype 
+	cp -r ./images/* $WORKSPACE/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER/images/
+    cp -r ./images/* /home/builds/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER/images/
+	cp *.img $WORKSPACE/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER/
+    cp *.img /home/builds/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER/
+fi
+	
+#cp *.img $WORKSPACE/$projectroot/$datetime/$buildtype&apos;_&apos;$configtype/
+</command>
+    </hudson.tasks.Shell>
+    <com.etas.jenkins.plugins.CreateTextFile.CreateFileBuilder plugin="text-file-operations@1.2.1">
+      <textFilePath>${WORKSPACE}/${projectroot}/${buildtype}_${configtype}/${BUILD_NUMBER}/readme.txt</textFilePath>
+      <textFileContent>Initiator = $initiator_email
+BuildType = $buildtype
+ConfigType = $configtype
+Last cl = $CL
+Current CL= $current_changelist
+Build Version = $buildversion
+Target = $target
+Machine = $NODE_NAME
+make_clean = $make_clean</textFileContent>
+      <fileOption>overWrite</fileOption>
+    </com.etas.jenkins.plugins.CreateTextFile.CreateFileBuilder>
+  </builders>
+  <publishers>
+    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.41">
+      <recipientList>$initiator_email, bcc: $DEFAULT_RECIPIENTS</recipientList>
+      <configuredTriggers>
+        <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
+          <email>
+            <recipientList></recipientList>
+            <subject>$PROJECT_DEFAULT_SUBJECT</subject>
+            <body>$PROJECT_DEFAULT_CONTENT</body>
+            <recipientProviders>
+              <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
+            </recipientProviders>
+            <attachmentsPattern></attachmentsPattern>
+            <attachBuildLog>false</attachBuildLog>
+            <compressBuildLog>false</compressBuildLog>
+            <replyTo>$PROJECT_DEFAULT_REPLYTO</replyTo>
+            <contentType>project</contentType>
+          </email>
+        </hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
+      </configuredTriggers>
+      <contentType>default</contentType>
+      <defaultSubject>Starhub HDI_CABLE_P22 Build: ${buildtype}_${configtype} #${BUILD_NUMBER} - $BUILD_STATUS</defaultSubject>
+      <defaultContent>${buildtype}_${configtype} #${BUILD_NUMBER} - $BUILD_STATUS
+Last change list is $CL
+current change list is $current_changelist
+Build version is  $buildversion
+FTP  ftp://10.12.2.195/../../../builds/HDI_CABLE_P22/${buildtype}_${configtype}/${BUILD_NUMBER}
+Machine: $NODE_NAME
+make_clean = $make_clean
+Samba  \\10.12.2.195\builds\</defaultContent>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript>$DEFAULT_PRESEND_SCRIPT</presendScript>
+      <attachBuildLog>true</attachBuildLog>
+      <compressBuildLog>true</compressBuildLog>
+      <replyTo>$DEFAULT_REPLYTO</replyTo>
+      <saveOutput>false</saveOutput>
+      <disabled>false</disabled>
+    </hudson.plugins.emailext.ExtendedEmailPublisher>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.28">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
+    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.5.1">
+      <template>${initiator_email}_${buildtype}_${configtype}_#${BUILD_NUMBER}</template>
+    </org.jenkinsci.plugins.buildnamesetter.BuildNameSetter>
+  </buildWrappers>
+</project>

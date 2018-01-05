@@ -1,0 +1,542 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>This job is to make Starhub ph2 release build from depot  //OTV_OS/Opentv5/DEVELOP/StarHub/NFX_IPTV2_Maintenance/...</description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.security.AuthorizationMatrixProperty>
+      <permission>hudson.model.Item.Read:anonymous</permission>
+      <permission>hudson.model.Item.Read:tester</permission>
+      <permission>hudson.model.Item.Discover:tester</permission>
+      <permission>hudson.model.Item.Workspace:tester</permission>
+    </hudson.security.AuthorizationMatrixProperty>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs>.*release_starhub_sam7428.*
+.*release_starhub_sam7428_cso.*
+.*release_starhub_sam7428_nts.*
+.*sdk_starhub_sam7428_cso.*</blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@1.0.3">
+      <leastLoadDisabled>false</leastLoadDisabled>
+    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
+    <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.2">
+      <optOut>false</optOut>
+    </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>initiator_email</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>changelist</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>buildtype</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>configtype</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>force_sync</name>
+          <description></description>
+          <defaultValue>no</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>o_debug</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>o_trace</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>o_error</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>target</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>is_dailybuild</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>flashbox</name>
+          <description></description>
+          <defaultValue>no</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>projectroot</name>
+          <description></description>
+          <defaultValue>SHBNFX_PH2_Maintenance_Build</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>CL</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>datetime</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>buildversion</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>make_clean</name>
+          <description></description>
+          <defaultValue>yes</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>shelved_cl</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>shelved_cl2</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>buildfrom</name>
+          <description></description>
+          <defaultValue>_</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>buildnumber</name>
+          <description>eg build9.61</description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.36">
+    <configVersion>2</configVersion>
+    <p4User>zwang</p4User>
+    <p4Passwd>0f0kqlwaRanDqMklDMTfa3AlrK8xqw==</p4Passwd>
+    <p4Port>p4-open-prx-bej:1666</p4Port>
+    <p4Client>Make_SHBNFX_PH2_Maintenance_Build_workspace</p4Client>
+    <projectPath>//OTV_OS/Opentv5/DEVELOP/StarHub/NFX_IPTV2_Maintenance/... //Make_SHBNFX_PH2_Maintenance_Build_workspace/Opentv5/DEVELOP/StarHub/NFX_IPTV2_Maintenance/... 
+//OTV_OS/Opentv5/DEVELOP/StarHub/toolchains //Make_SHBNFX_PH2_Maintenance_Build_workspace/Opentv5/DEVELOP/StarHub/toolchains</projectPath>
+    <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <p4SysDrive></p4SysDrive>
+    <p4SysRoot></p4SysRoot>
+    <p4Tool>p4_usr_local_bin</p4Tool>
+    <useClientSpec>false</useClientSpec>
+    <useStreamDepot>false</useStreamDepot>
+    <forceSync>false</forceSync>
+    <alwaysForceSync>false</alwaysForceSync>
+    <dontUpdateServer>false</dontUpdateServer>
+    <disableAutoSync>false</disableAutoSync>
+    <disableChangeLogOnly>false</disableChangeLogOnly>
+    <disableSyncOnly>false</disableSyncOnly>
+    <showIntegChanges>false</showIntegChanges>
+    <useOldClientName>false</useOldClientName>
+    <createWorkspace>true</createWorkspace>
+    <updateView>true</updateView>
+    <dontRenameClient>false</dontRenameClient>
+    <updateCounterValue>false</updateCounterValue>
+    <dontUpdateClient>false</dontUpdateClient>
+    <exposeP4Passwd>true</exposeP4Passwd>
+    <wipeBeforeBuild>false</wipeBeforeBuild>
+    <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
+    <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
+    <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
+    <firstChange>-1</firstChange>
+    <fileLimit>0</fileLimit>
+    <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
+    <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
+    <lineEndValue>local</lineEndValue>
+    <useViewMask>false</useViewMask>
+    <useViewMaskForPolling>true</useViewMaskForPolling>
+    <useViewMaskForSyncing>false</useViewMaskForSyncing>
+    <useViewMaskForChangeLog>false</useViewMaskForChangeLog>
+    <pollOnlyOnMaster>false</pollOnlyOnMaster>
+  </scm>
+  <assignedNode>195 || 144 || 143 || 227 || 3_17 || 2_78</assignedNode>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>true</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>true</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>echo $versionnumber
+
+echo $buildtype
+
+echo $configtype
+echo $run_on_node
+
+echo $shelved_cl
+
+echo $P4_TICKET
+
+echo $P4CLIENT
+
+echo $P4USER
+</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>
+#p4 -P ${P4PASSWD} login
+p4 -u zwang -c $P4CLIENT login &lt;&lt; EOF
+${P4PASSWD}
+EOF
+#p4 -p p4-open-prx-bej:1666 -u $P4_USER -p HUaxin79 login
+
+p4 revert //...
+
+if [ $shelved_cl != &quot;&quot; ] ; 
+then ( echo &quot;User specified a shelved changelist, unshelving changelist ($shelved_cl)&quot;;
+p4 -c $P4CLIENT unshelve -f -s $shelved_cl ;)
+else ( echo &quot;Not running with a shelved changelist&quot;; ); fi
+
+if [ $shelved_cl2 != &quot;&quot; ] ; 
+then ( echo &quot;User specified a shelved changelist, unshelving changelist ($shelved_cl2)&quot;;
+p4 -c $P4CLIENT unshelve -f -s $shelved_cl2 ;)
+else ( echo &quot;Not running with a shelved changelist&quot;; ); fi</command>
+    </hudson.tasks.Shell>
+    <org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder plugin="conditional-buildstep@1.3.3">
+      <condition class="org.jenkins_ci.plugins.run_condition.logic.Not" plugin="run-condition@1.0">
+        <condition class="org.jenkins_ci.plugins.run_condition.core.StringsMatchCondition">
+          <arg1>$changelist</arg1>
+          <arg2></arg2>
+          <ignoreCase>false</ignoreCase>
+        </condition>
+      </condition>
+      <buildStep class="hudson.tasks.Shell">
+        <command>p4 -u zwang -c $P4CLIENT login &lt;&lt; EOF
+${P4PASSWD}
+EOF
+echo &quot;User specified a changelist, syncing to the changelist ($changelist)&quot;
+p4 -c $P4CLIENT sync @$changelist</command>
+      </buildStep>
+      <runner class="org.jenkins_ci.plugins.run_condition.BuildStepRunner$Fail" plugin="run-condition@1.0"/>
+    </org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder>
+    <hudson.tasks.Shell>
+      <command>echo $changelist
+property_file=param.properties
+#cd $WORKSPACE/Opentv5/DEVELOP/StarHub/NFX_IPTV/otvtarg/sam7428_uclibc_bc
+#source ../set_env_bash.sh
+#make CONFIG_TYPE=starhub_sam7428 BUILD_TYPE=test clean
+#make CONFIG_TYPE=starhub_sam7428 BUILD_TYPE=test
+echo $P4_CHANGELIST
+export subfolder=$(date &apos;+%Y%m%d-%H&apos;)
+echo $subfolder
+if [ -f &quot;$property_file&quot; ]; then
+	rm param.properties
+fi
+    echo &quot;datetime=$subfolder&quot; &gt; param.properties
+
+if [ -f &quot;versionnumber.properties&quot; ]; then
+    rm versionnumber.properties
+fi
+    echo &quot; &quot;</command>
+    </hudson.tasks.Shell>
+    <hudson.plugins.python.Python plugin="python@1.3">
+      <command>import re
+import os
+workspace=os.getenv(&quot;WORKSPACE&quot;)
+buildnumber=os.getenv(&quot;buildnumber&quot;)
+print workspace
+file_object = open(workspace+&apos;/Opentv5/DEVELOP/StarHub/NFX_IPTV2_Maintenance/buildroot/package/Makefile.in&apos;)
+try:
+    all_the_text = file_object.read()
+finally:
+    file_object.close()
+
+#print all_the_text
+#result = re.findall(&quot;BUILD_VERSION=\&quot;(.*)\&quot;&quot;, all_the_text)
+result = re.findall(&quot;BUILD_VERSION=\&quot;(.*)\&quot;&quot;, all_the_text)
+#print result[1]
+version=&apos;&apos;
+if result:
+    for v in result:
+        if not &quot;$(&quot; in v:
+            version=v
+
+
+print version
+
+f=file(&quot;versionnumber.properties&quot;,&quot;w+&quot;)
+str=&quot;versionnumber=&quot;+version
+print str
+f.writelines(str)
+f.close()</command>
+    </hudson.plugins.python.Python>
+    <EnvInjectBuilder plugin="envinject@1.92.1">
+      <info>
+        <propertiesFilePath>$WORKSPACE/versionnumber.properties</propertiesFilePath>
+      </info>
+    </EnvInjectBuilder>
+    <hudson.tasks.Shell>
+      <command>echo $versionnumber
+echo $buildtype
+echo $configtype</command>
+    </hudson.tasks.Shell>
+    <hudson.plugins.parameterizedtrigger.TriggerBuilder plugin="parameterized-trigger@2.30">
+      <configs>
+        <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+          <configs>
+            <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+              <properties>emailaddress=$initiator_email
+buildtype=$buildtype
+target=$target
+configtype=$configtype
+CL=$P4_CHANGELIST
+buildversion=$versionnumber
+current_changelist=$changelist
+run_on_node=$NODE_NAME
+joburl=${BUILD_URL}console
+shelved_cl=$shelved_cl
+buildfrom=$buildfrom</properties>
+            </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+          </configs>
+          <projects>send_email_to_initiator_ph2</projects>
+          <condition>ALWAYS</condition>
+          <triggerWithNoParameters>false</triggerWithNoParameters>
+          <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
+        </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+      </configs>
+    </hudson.plugins.parameterizedtrigger.TriggerBuilder>
+    <hudson.tasks.Shell>
+      <command>unset PERL_MM_OPT
+
+echo $CL
+#projectroot=StarHub_NFX_IPTV
+#target=sam7428_uclibc_bc
+#buildtype=release
+#configtype=starhub_sam7428_cso
+#datetime=$(date &apos;+%Y%m%d-%H&apos;)
+echo $projectroot
+echo $target
+echo $buildtype
+echo $configtype
+echo $datetime
+echo $initiator_email
+echo $versionnumber
+echo $o_debug
+echo $o_trace
+echo $o_error
+echo $target
+echo $changelist
+echo $current_changelist
+if [ -z &quot;$changelist&quot; ]; then
+	echo &quot;changelist is empty&quot;
+    current_changelist=$P4_CHANGELIST
+else
+	echo &quot;changelist is not empty&quot;
+    current_changelist=$changelist
+fi
+echo &quot;current changelist is $current_changelist&quot;
+
+ln -sf /home/swang/toolchains /home/slave_dir/workspace/Make_SHBNFX_PH2_Maintenance_Build/Opentv5/toolchains
+ln -sf /home/swang/toolchains /home/slave_dir/workspace/Make_SHBNFX_PH2_Maintenance_Build/Opentv5/DEVELOP/StarHub/NFX_IPTV2_Maintenance/toolchains
+ln -sf /home/swang/toolchains /home/slave_dir/workspace/Make_SHBNFX_PH2_Maintenance_Build/Opentv5/DEVELOP/toolchains
+
+codedir=/home/slave_dir/workspace/Make_SHBNFX_PH2_Maintenance_Build/Opentv5/DEVELOP/StarHub/NFX_IPTV2_Maintenance/otvtarg/$target
+cd $codedir
+source ../set_env_bash.sh
+
+echo &quot;execute clean....&quot;
+make CONFIG_TYPE=$configtype BUILD_TYPE=$buildtype clean
+
+if [ -d $WORKSPACE/$projectroot ]; then
+	rm -rf $WORKSPACE/$projectroot
+fi
+
+if [ $buildtype = &quot;release&quot; ] ; then
+	make CONFIG_TYPE=$configtype BUILD_TYPE=$buildtype image
+	mkdir -p $WORKSPACE/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER&apos;_cl_&apos;$current_changelist/images_v1/
+    mkdir -p /home/builds/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER&apos;_cl_&apos;$current_changelist/images_v1/
+	cd $codedir/$buildtype&apos;_&apos;$configtype 
+	cp -r ./images/* $WORKSPACE/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER&apos;_cl_&apos;$current_changelist/images_v1/
+	cp -r ./images/* /home/builds/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER&apos;_cl_&apos;$current_changelist/images_v1/
+	
+
+	cd $codedir
+	make CONFIG_TYPE=$configtype BUILD_TYPE=$buildtype V2_IMAGE=yes image
+	mkdir -p $WORKSPACE/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER&apos;_cl_&apos;$current_changelist/images_v2/
+    mkdir -p /home/builds/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER&apos;_cl_&apos;$current_changelist/images_v2/
+	cd $codedir/$buildtype&apos;_&apos;$configtype 
+	cp -r ./images/* $WORKSPACE/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER&apos;_cl_&apos;$current_changelist/images_v2/
+    cp -r ./images/* /home/builds/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER&apos;_cl_&apos;$current_changelist/images_v2/
+
+elif [ $buildtype = &quot;test&quot; ] ; then
+	make CONFIG_TYPE=$configtype BUILD_TYPE=$buildtype image
+	mkdir -p $WORKSPACE/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER&apos;_cl_&apos;$current_changelist/images/
+    mkdir -p /home/builds/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER&apos;_cl_&apos;$current_changelist/images/
+	cd $codedir/$buildtype&apos;_&apos;$configtype 
+	cp -r ./images/* $WORKSPACE/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER&apos;_cl_&apos;$current_changelist/images/
+    cp -r ./images/* /home/builds/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER&apos;_cl_&apos;$current_changelist/images/
+	cp *.img $WORKSPACE/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER&apos;_cl_&apos;$current_changelist/
+    cp *.img /home/builds/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER&apos;_cl_&apos;$current_changelist/
+elif [ $buildtype = &quot;sdk&quot; ] ; then
+	make CONFIG_TYPE=$configtype BUILD_TYPE=$buildtype image
+	mkdir -p $WORKSPACE/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER&apos;_cl_&apos;$current_changelist/images/
+    mkdir -p /home/builds/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER&apos;_cl_&apos;$current_changelist/images/
+	cd $codedir/$buildtype&apos;_&apos;$configtype 
+	cp -r ./images/* $WORKSPACE/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER&apos;_cl_&apos;$current_changelist/images/
+    cp -r ./images/* /home/builds/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER&apos;_cl_&apos;$current_changelist/images/
+	cp *.img $WORKSPACE/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER&apos;_cl_&apos;$current_changelist/
+    cp *.img /home/builds/$projectroot/$buildtype&apos;_&apos;$configtype/$BUILD_NUMBER&apos;_cl_&apos;$current_changelist/
+fi
+	
+#cp *.img $WORKSPACE/$projectroot/$datetime/$buildtype&apos;_&apos;$configtype/
+</command>
+    </hudson.tasks.Shell>
+    <com.etas.jenkins.plugins.CreateTextFile.CreateFileBuilder plugin="text-file-operations@1.2.1">
+      <textFilePath>${WORKSPACE}/${projectroot}/${buildtype}_${configtype}/${BUILD_NUMBER}/readme.txt</textFilePath>
+      <textFileContent>Initiator = $initiator_email
+BuildType = $buildtype
+ConfigType = $configtype
+Last cl = $P4_CHANGELIST
+Current CL= $changelist
+Build Version = $versionnumber
+Target = $target
+Machine = $NODE_NAME
+make_clean = $make_clean</textFileContent>
+      <fileOption>overWrite</fileOption>
+    </com.etas.jenkins.plugins.CreateTextFile.CreateFileBuilder>
+    <EnvInjectBuilder plugin="envinject@1.92.1">
+      <info>
+        <propertiesContent>BUILD_CL= ${changelist}</propertiesContent>
+      </info>
+    </EnvInjectBuilder>
+    <hudson.tasks.Shell>
+      <command>
+echo &quot;current changelist is ${current_changelist}&quot;
+echo &quot; BUILD_CL is ${BUILD_CL} &quot;
+echo &quot;change list is ${changelist}&quot;</command>
+    </hudson.tasks.Shell>
+    <org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder plugin="conditional-buildstep@1.3.3">
+      <condition class="org.jenkins_ci.plugins.run_condition.core.StringsMatchCondition" plugin="run-condition@1.0">
+        <arg1>$changelist</arg1>
+        <arg2></arg2>
+        <ignoreCase>false</ignoreCase>
+      </condition>
+      <buildStep class="EnvInjectBuilder" plugin="envinject@1.92.1">
+        <info>
+          <propertiesContent>BUILD_CL= $P4_CHANGELIST</propertiesContent>
+        </info>
+      </buildStep>
+      <runner class="org.jenkins_ci.plugins.run_condition.BuildStepRunner$Fail" plugin="run-condition@1.0"/>
+    </org.jenkinsci.plugins.conditionalbuildstep.singlestep.SingleConditionalBuilder>
+    <hudson.tasks.Shell>
+      <command>echo &quot;current changelist is ${current_changelist}&quot;
+echo &quot; BUILD_CL is ${BUILD_CL} &quot;
+echo &quot;change list is ${changelist}&quot;</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers>
+    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57.2">
+      <recipientList>$initiator_email, bcc: $DEFAULT_RECIPIENTS</recipientList>
+      <configuredTriggers>
+        <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
+          <email>
+            <subject>$PROJECT_DEFAULT_SUBJECT</subject>
+            <body>$PROJECT_DEFAULT_CONTENT</body>
+            <recipientProviders>
+              <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
+              <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
+            </recipientProviders>
+            <attachmentsPattern></attachmentsPattern>
+            <attachBuildLog>false</attachBuildLog>
+            <compressBuildLog>false</compressBuildLog>
+            <replyTo>$PROJECT_DEFAULT_REPLYTO</replyTo>
+            <contentType>project</contentType>
+          </email>
+        </hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
+        <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
+          <email>
+            <subject>$PROJECT_DEFAULT_SUBJECT</subject>
+            <body>$PROJECT_DEFAULT_CONTENT</body>
+            <recipientProviders>
+              <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
+            </recipientProviders>
+            <attachmentsPattern></attachmentsPattern>
+            <attachBuildLog>false</attachBuildLog>
+            <compressBuildLog>false</compressBuildLog>
+            <replyTo>$PROJECT_DEFAULT_REPLYTO</replyTo>
+            <contentType>project</contentType>
+          </email>
+        </hudson.plugins.emailext.plugins.trigger.FailureTrigger>
+        <hudson.plugins.emailext.plugins.trigger.SuccessTrigger>
+          <email>
+            <subject>$PROJECT_DEFAULT_SUBJECT</subject>
+            <body>$PROJECT_DEFAULT_CONTENT</body>
+            <recipientProviders>
+              <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
+            </recipientProviders>
+            <attachmentsPattern></attachmentsPattern>
+            <attachBuildLog>false</attachBuildLog>
+            <compressBuildLog>false</compressBuildLog>
+            <replyTo>$PROJECT_DEFAULT_REPLYTO</replyTo>
+            <contentType>project</contentType>
+          </email>
+        </hudson.plugins.emailext.plugins.trigger.SuccessTrigger>
+      </configuredTriggers>
+      <contentType>default</contentType>
+      <defaultSubject>SHBNFX2 Maintenance Branch Build: ${buildfrom} ${buildtype}_${configtype} #${BUILD_NUMBER} - $BUILD_STATUS</defaultSubject>
+      <defaultContent>${buildtype}_${configtype} #${BUILD_NUMBER} - $BUILD_STATUS
+Last change list is $P4_CHANGELIST
+current change list is ${BUILD_CL}
+Build version is  $versionnumber
+FTP  ftp://10.12.2.195/../../../builds/SHBNFX_PH2_Maintenance_Build/${buildtype}_${configtype}/${BUILD_NUMBER}_cl_${BUILD_CL}
+Machine: $NODE_NAME
+shelved cl : $shelved_cl
+make_clean = $make_clean</defaultContent>
+      <attachmentsPattern></attachmentsPattern>
+      <presendScript>if (build.result.toString().equals(&quot;FAILURE&quot;)) { 
+    msg.addHeader(&quot;X-Priority&quot;, &quot;1 (Highest)&quot;); 
+    msg.addHeader(&quot;Importance&quot;, &quot;High&quot;); 
+}</presendScript>
+      <postsendScript></postsendScript>
+      <attachBuildLog>true</attachBuildLog>
+      <compressBuildLog>true</compressBuildLog>
+      <replyTo>$DEFAULT_REPLYTO</replyTo>
+      <saveOutput>false</saveOutput>
+      <disabled>false</disabled>
+    </hudson.plugins.emailext.ExtendedEmailPublisher>
+    <org.jenkinsci.plugins.postbuildscript.PostBuildScript plugin="postbuildscript@0.17">
+      <buildSteps>
+        <hudson.tasks.Shell>
+          <command>codedir=/home/slave_dir/workspace/Make_SHBNFX_PH2_Maintenance_Build/Opentv5/DEVELOP/StarHub/NFX_IPTV2_Maintenance/otvtarg/$target
+cd $codedir
+echo &quot;Post build action ... execute clean....&quot;
+make CONFIG_TYPE=$configtype BUILD_TYPE=$buildtype clean</command>
+        </hudson.tasks.Shell>
+      </buildSteps>
+      <scriptOnlyIfSuccess>false</scriptOnlyIfSuccess>
+      <scriptOnlyIfFailure>false</scriptOnlyIfFailure>
+      <markBuildUnstable>true</markBuildUnstable>
+    </org.jenkinsci.plugins.postbuildscript.PostBuildScript>
+  </publishers>
+  <buildWrappers>
+    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.5.1">
+      <template>${initiator_email}_${buildtype}_${configtype}_#${BUILD_NUMBER}</template>
+    </org.jenkinsci.plugins.buildnamesetter.BuildNameSetter>
+  </buildWrappers>
+</project>

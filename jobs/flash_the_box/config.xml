@@ -1,0 +1,164 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@1.0.3">
+      <leastLoadDisabled>false</leastLoadDisabled>
+    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>configtype</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>buildtype</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>buildnumber</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>buildversion</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <assignedNode>162</assignedNode>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.plugins.parameterizedtrigger.TriggerBuilder plugin="parameterized-trigger@2.30">
+      <configs>
+        <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+          <configs>
+            <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+              <properties>buildtype=$buildtype
+configtype=$configtype
+buildnumber=$buildnumber
+buildversion=$buildversion</properties>
+            </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+          </configs>
+          <projects>send_notification</projects>
+          <condition>ALWAYS</condition>
+          <triggerWithNoParameters>false</triggerWithNoParameters>
+          <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
+        </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+      </configs>
+    </hudson.plugins.parameterizedtrigger.TriggerBuilder>
+    <hudson.plugins.python.Python plugin="python@1.3">
+      <command>import time
+import serial
+import sys
+import os
+
+bn=os.getenv(&quot;buildnumber&quot;)
+ct=os.getenv(&quot;configtype&quot;)
+bt=os.getenv(&quot;buildtype&quot;)
+print bn
+print ct
+print bt
+
+# configure the serial connections (the parameters differs on the device you are connecting to)
+ser = serial.Serial(
+    #port=&apos;/dev/ttyUSB0&apos;,
+    port=&apos;COM3&apos;,
+    baudrate=115200,
+    timeout=10,
+    parity=serial.PARITY_NONE,
+    stopbits=serial.STOPBITS_ONE,
+    bytesize=serial.EIGHTBITS,
+    xonxoff=False,
+    rtscts=False,
+    dsrdtr=False
+)
+ser.isOpen()
+
+if(ser.isOpen() == False):
+	sys.exit(1)
+    
+try:
+	ser.write(&apos;ifconfig eth1 -auto \n&apos;)
+except Exception, ex:
+  	sys.exit(1)
+    
+time.sleep(10)
+
+#ser.write(&apos;flash -noheader 10.12.2.195:StarHub_NFX_IPTV_PH2/test_starhub_sam7428_qa/1539/images/vmlinuz-main TNand0.appsw \n&apos;)
+
+ser.write(&apos;flash -noheader 10.12.2.195:StarHub_NFX_IPTV_PH2/&apos;+bt+&apos;_&apos;+ct+&apos;/&apos;+bn+&apos;/images/vmlinuz-main TNand0.appsw \n&apos;)
+
+    
+time.sleep(20)
+
+ser.write(&apos;boot -z -elf 10.12.2.195:vmlinuz-initrd-7429b0 \&apos;mtdparts=brcmnand.0:256M@256M(mtd)\&apos; \n&apos;)
+
+time.sleep(30)
+
+ser.write(&apos;flash_erase /dev/mtd1 0 0 \n&apos;)
+
+time.sleep(20)
+
+ser.write(&apos;tftp -gr StarHub_NFX_IPTV_PH2/&apos;+bt+&apos;_&apos;+ct+&apos;/&apos;+bn+&apos;/images/ubifs-256k-4096-7428b0.img 10.12.2.195 \n&apos;)
+
+time.sleep(240)
+
+ser.write(&apos;ubiformat -f ubifs-256k-4096-7428b0.img /dev/mtd1 \n&apos;)
+
+time.sleep(60)
+
+ser.write(&apos;reboot \n&apos;)
+
+time.sleep(30)
+
+ser.write(&apos;boot -elf -z TNand0.appsw: -addr=80001000 -max=16777216 \&apos;mtdparts=brcmnand.0:256M@256M(mtd) ubi.mtd=1,4096 root=ubi0:rootfs rootfstype=ubifs rw bmem=156M@100M bmem=305M@512M\&apos;;go 0x80001400 \n&apos;)
+
+time.sleep(120)
+
+time.sleep(300)
+
+ser.write(&apos;\n&apos;)
+ser.close()
+exit()</command>
+    </hudson.plugins.python.Python>
+  </builders>
+  <publishers>
+    <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.30">
+      <configs>
+        <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+          <configs>
+            <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+              <properties>configtype=$configtype
+buildtype=$buildtype
+buildnumber=$buildnumber
+buildversion=$buildversion</properties>
+            </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+          </configs>
+          <projects>auto_test</projects>
+          <condition>SUCCESS</condition>
+          <triggerWithNoParameters>false</triggerWithNoParameters>
+        </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+      </configs>
+    </hudson.plugins.parameterizedtrigger.BuildTrigger>
+  </publishers>
+  <buildWrappers/>
+</project>

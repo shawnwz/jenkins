@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@1.0.3">
+      <leastLoadDisabled>false</leastLoadDisabled>
+    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>configtype</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>buildtype</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>buildnumber</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>buildversion</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <assignedNode>162</assignedNode>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.plugins.python.Python plugin="python@1.3">
+      <command>import time
+import datetime
+import serial
+import sys
+import os
+
+bn=os.getenv(&quot;buildnumber&quot;)
+ct=os.getenv(&quot;configtype&quot;)
+bt=os.getenv(&quot;buildtype&quot;)
+print bn
+print ct
+print bt
+
+# configure the serial connections (the parameters differs on the device you are connecting to)
+ser = serial.Serial(
+    #port=&apos;/dev/ttyUSB0&apos;,
+    port=&apos;COM3&apos;,
+    baudrate=115200,
+    timeout=10,
+    parity=serial.PARITY_NONE,
+    stopbits=serial.STOPBITS_ONE,
+    bytesize=serial.EIGHTBITS,
+    xonxoff=False,
+    rtscts=False,
+    dsrdtr=False
+)
+ser.isOpen()
+
+
+out = &apos;&apos;
+
+if(ser.isOpen() == False):
+	sys.exit(1)
+
+
+print &quot;going to run upload epg&quot;
+now = datetime.datetime.now().strftime(&apos;%Y-%m-%d-%H-%M&apos;)
+print now
+
+ser.write(&apos;\n&apos;)
+ser.write(&apos;\n&apos;)
+ser.write(&apos;\n&apos;)
+ser.write(&apos;\n&apos;)
+ser.write(&apos;\n&apos;)
+ser.write(&apos;\n&apos;)
+ser.write(&apos;\n&apos;)
+time.sleep(5)
+ser.write(&apos;scp -r /home/otv_system/epg swang@10.110.52.11:/home/epg_store/epg_&apos; + now + &apos;\n&apos;)
+time.sleep(5)
+ser.write(&apos;y \n&apos;)
+time.sleep(5)
+ser.write(&apos;opentv123\n&apos;)
+time.sleep(5)
+ser.write(&apos;scp -r /home/otv_system/epg/* swang@10.110.52.11:/home/epg_store/epg \n&apos;)
+time.sleep(5)
+ser.write(&apos;opentv123\n&apos;)
+while ser.inWaiting() &gt; 0:
+    out += ser.read(1)
+print out
+time.sleep(50)
+ser.close()
+exit()</command>
+    </hudson.plugins.python.Python>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+</project>

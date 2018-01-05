@@ -1,0 +1,158 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>supports following combainations for now&#xd;
+test_starhub_sam7428_nts&#xd;
+test_starhub_sam7428_cso&#xd;
+test_starhub_sam7428&#xd;
+sdk_starhub_sam7428_cso&#xd;
+release_starhub_sam7428_nts&#xd;
+release_starhub_sam7428_cso&#xd;
+release_starhub_sam7428</description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@1.0.3">
+      <leastLoadDisabled>false</leastLoadDisabled>
+    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.plugins.validating__string__parameter.ValidatingStringParameterDefinition plugin="validating-string-parameter@2.3">
+          <name>initiator_email</name>
+          <description>MUST HAVE!  Will update build info to this address</description>
+          <defaultValue></defaultValue>
+          <regex>^[A-Za-zd]+([-_.][A-Za-zd]+)*@([A-Za-zd]+[-.])+[A-Za-zd]{2,5}$</regex>
+          <failedValidationMessage>Please input correct email address</failedValidationMessage>
+        </hudson.plugins.validating__string__parameter.ValidatingStringParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>buildtype</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>test</string>
+              <string>release</string>
+              <string>sdk</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>configtype</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>starhub_sam7428</string>
+              <string>starhub_sam7428_cso</string>
+              <string>starhub_sam7428_nts</string>
+              <string>starhub_sam7428_qa</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>changelist</name>
+          <description>Optional. pure number  eg.  556239 
+Sync to newest CL if blank.  </description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>make_clean</name>
+          <description>whether to execute make clean first, default is yes </description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>yes</string>
+              <string>no</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <com.cwctravel.hudson.plugins.extended__choice__parameter.ExtendedChoiceParameterDefinition plugin="extended-choice-parameter@0.72">
+          <name>O_DEBUG</name>
+          <description></description>
+          <quoteValue>false</quoteValue>
+          <saveJSONParameterToFile>false</saveJSONParameterToFile>
+          <visibleItemCount>5</visibleItemCount>
+          <type>PT_MULTI_SELECT</type>
+          <propertyFile>/home/jenkins/components.properties</propertyFile>
+          <propertyKey>component</propertyKey>
+          <multiSelectDelimiter> </multiSelectDelimiter>
+          <projectName>BUILD_ON_DEMAND_7428</projectName>
+        </com.cwctravel.hudson.plugins.extended__choice__parameter.ExtendedChoiceParameterDefinition>
+        <com.cwctravel.hudson.plugins.extended__choice__parameter.ExtendedChoiceParameterDefinition plugin="extended-choice-parameter@0.72">
+          <name>O_TRACE</name>
+          <description></description>
+          <quoteValue>false</quoteValue>
+          <saveJSONParameterToFile>false</saveJSONParameterToFile>
+          <visibleItemCount>5</visibleItemCount>
+          <type>PT_MULTI_SELECT</type>
+          <propertyFile>/home/jenkins/components.properties</propertyFile>
+          <propertyKey>component</propertyKey>
+          <multiSelectDelimiter> </multiSelectDelimiter>
+          <projectName>BUILD_ON_DEMAND_7428</projectName>
+        </com.cwctravel.hudson.plugins.extended__choice__parameter.ExtendedChoiceParameterDefinition>
+        <com.cwctravel.hudson.plugins.extended__choice__parameter.ExtendedChoiceParameterDefinition plugin="extended-choice-parameter@0.72">
+          <name>O_ERROR</name>
+          <description></description>
+          <quoteValue>false</quoteValue>
+          <saveJSONParameterToFile>false</saveJSONParameterToFile>
+          <visibleItemCount>5</visibleItemCount>
+          <type>PT_MULTI_SELECT</type>
+          <propertyFile>/home/jenkins/components.properties</propertyFile>
+          <propertyKey>component</propertyKey>
+          <multiSelectDelimiter> </multiSelectDelimiter>
+          <projectName>BUILD_ON_DEMAND_7428</projectName>
+        </com.cwctravel.hudson.plugins.extended__choice__parameter.ExtendedChoiceParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <assignedNode>slave</assignedNode>
+  <canRoam>false</canRoam>
+  <disabled>true</disabled>
+  <blockBuildWhenDownstreamBuilding>true</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>echo $buildtype
+echo $configtype
+echo $initiator_email
+echo $NODE_NAME
+echo $O_DEBUG
+echo $O_TRACE
+echo $O_ERROR</command>
+    </hudson.tasks.Shell>
+    <hudson.plugins.parameterizedtrigger.TriggerBuilder plugin="parameterized-trigger@2.30">
+      <configs>
+        <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+          <configs>
+            <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+              <properties>run_on_node=$NODE_NAME
+initiator_email=$initiator_email
+changelist=$changelist
+buildtype=$buildtype
+configtype=$configtype
+make_clean=$make_clean
+o_debug=$O_DEBUG
+o_trace=$O_TRACE
+o_error=$O_ERROR</properties>
+            </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+          </configs>
+          <projects>Sync_Code_StarHub_PH1_LOG</projects>
+          <condition>ALWAYS</condition>
+          <triggerWithNoParameters>false</triggerWithNoParameters>
+          <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
+        </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+      </configs>
+    </hudson.plugins.parameterizedtrigger.TriggerBuilder>
+  </builders>
+  <publishers/>
+  <buildWrappers>
+    <org.jenkinsci.plugins.buildnamesetter.BuildNameSetter plugin="build-name-setter@1.5.1">
+      <template>${initiator_email}_#${BUILD_NUMBER}</template>
+    </org.jenkinsci.plugins.buildnamesetter.BuildNameSetter>
+  </buildWrappers>
+</project>

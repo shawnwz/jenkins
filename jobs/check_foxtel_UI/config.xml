@@ -1,0 +1,216 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.security.AuthorizationMatrixProperty>
+      <permission>com.cloudbees.plugins.credentials.CredentialsProvider.Delete:anonymous</permission>
+      <permission>com.cloudbees.plugins.credentials.CredentialsProvider.Delete:Sabarigirivasan.N</permission>
+      <permission>com.cloudbees.plugins.credentials.CredentialsProvider.Delete:Natarajan</permission>
+      <permission>com.cloudbees.plugins.credentials.CredentialsProvider.ManageDomains:anonymous</permission>
+      <permission>com.cloudbees.plugins.credentials.CredentialsProvider.ManageDomains:Sabarigirivasan.N</permission>
+      <permission>com.cloudbees.plugins.credentials.CredentialsProvider.ManageDomains:Natarajan</permission>
+      <permission>hudson.model.Item.Move:anonymous</permission>
+      <permission>hudson.model.Item.Move:Sabarigirivasan.N</permission>
+      <permission>hudson.model.Item.Move:Natarajan</permission>
+      <permission>hudson.model.Item.Read:anonymous</permission>
+      <permission>hudson.model.Item.Read:Sabarigirivasan.N</permission>
+      <permission>hudson.model.Item.Read:Natarajan</permission>
+      <permission>hudson.model.Item.Workspace:anonymous</permission>
+      <permission>hudson.model.Item.Workspace:Sabarigirivasan.N</permission>
+      <permission>hudson.model.Item.Workspace:Natarajan</permission>
+      <permission>hudson.model.Item.Configure:anonymous</permission>
+      <permission>hudson.model.Item.Configure:Sabarigirivasan.N</permission>
+      <permission>hudson.model.Item.Configure:Natarajan</permission>
+      <permission>hudson.model.Run.Delete:anonymous</permission>
+      <permission>hudson.model.Run.Delete:Sabarigirivasan.N</permission>
+      <permission>hudson.model.Run.Delete:Natarajan</permission>
+      <permission>hudson.model.Item.Discover:anonymous</permission>
+      <permission>hudson.model.Item.Discover:Sabarigirivasan.N</permission>
+      <permission>hudson.model.Item.Discover:Natarajan</permission>
+      <permission>com.cloudbees.plugins.credentials.CredentialsProvider.View:anonymous</permission>
+      <permission>com.cloudbees.plugins.credentials.CredentialsProvider.View:Sabarigirivasan.N</permission>
+      <permission>com.cloudbees.plugins.credentials.CredentialsProvider.View:Natarajan</permission>
+      <permission>hudson.model.Item.Build:anonymous</permission>
+      <permission>hudson.model.Item.Build:Sabarigirivasan.N</permission>
+      <permission>hudson.model.Item.Build:Natarajan</permission>
+      <permission>com.cloudbees.plugins.credentials.CredentialsProvider.Create:anonymous</permission>
+      <permission>com.cloudbees.plugins.credentials.CredentialsProvider.Create:Sabarigirivasan.N</permission>
+      <permission>com.cloudbees.plugins.credentials.CredentialsProvider.Create:Natarajan</permission>
+      <permission>hudson.model.Item.Cancel:anonymous</permission>
+      <permission>hudson.model.Item.Cancel:Sabarigirivasan.N</permission>
+      <permission>hudson.model.Item.Cancel:Natarajan</permission>
+      <permission>hudson.model.Item.Delete:anonymous</permission>
+      <permission>hudson.model.Item.Delete:Sabarigirivasan.N</permission>
+      <permission>hudson.model.Item.Delete:Natarajan</permission>
+      <permission>hudson.model.Run.Update:anonymous</permission>
+      <permission>hudson.model.Run.Update:Sabarigirivasan.N</permission>
+      <permission>hudson.model.Run.Update:Natarajan</permission>
+      <permission>com.cloudbees.plugins.credentials.CredentialsProvider.Update:anonymous</permission>
+      <permission>com.cloudbees.plugins.credentials.CredentialsProvider.Update:Sabarigirivasan.N</permission>
+      <permission>com.cloudbees.plugins.credentials.CredentialsProvider.Update:Natarajan</permission>
+    </hudson.security.AuthorizationMatrixProperty>
+    <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
+      <useBuildBlocker>false</useBuildBlocker>
+      <blockLevel>GLOBAL</blockLevel>
+      <scanQueueFor>DISABLED</scanQueueFor>
+      <blockingJobs></blockingJobs>
+    </hudson.plugins.buildblocker.BuildBlockerProperty>
+    <org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty plugin="leastload@1.0.3">
+      <leastLoadDisabled>false</leastLoadDisabled>
+    </org.bstick12.jenkinsci.plugins.leastload.LeastLoadDisabledProperty>
+    <com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.17.2">
+      <optOut>false</optOut>
+    </com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
+  </properties>
+  <scm class="hudson.plugins.perforce.PerforceSCM" plugin="perforce@1.3.36">
+    <configVersion>2</configVersion>
+    <p4User>zwang</p4User>
+    <p4Passwd>0f0kqlwajsV/WTqCF+Xfa3AlrK8xqw==</p4Passwd>
+    <p4Port>p4-open-prx-bej:1666</p4Port>
+    <p4Client>check_foxtel_UI_workspace</p4Client>
+    <projectPath>//OTV_CUST_ENG/APAC/Foxtel/UI/MAIN/src/... //check_foxtel_UI_workspace/APAC/Foxtel/UI/MAIN/src/...
+//OTV_CUST_ENG/APAC/Foxtel/UI/MAIN/build/gulp/...  //check_foxtel_UI_workspace/APAC/Foxtel/UI/MAIN/build/gulp/...
+//OTV_CUST_ENG/APAC/Foxtel/UI/MAIN/build/files.json //check_foxtel_UI_workspace/APAC/Foxtel/UI/MAIN/build/files.json</projectPath>
+    <projectOptions>noallwrite clobber nocompress unlocked nomodtime rmdir</projectOptions>
+    <p4SysDrive></p4SysDrive>
+    <p4SysRoot></p4SysRoot>
+    <p4Tool>p4_usr_local_bin</p4Tool>
+    <useClientSpec>false</useClientSpec>
+    <useStreamDepot>false</useStreamDepot>
+    <forceSync>false</forceSync>
+    <alwaysForceSync>true</alwaysForceSync>
+    <dontUpdateServer>false</dontUpdateServer>
+    <disableAutoSync>false</disableAutoSync>
+    <disableChangeLogOnly>false</disableChangeLogOnly>
+    <disableSyncOnly>false</disableSyncOnly>
+    <showIntegChanges>false</showIntegChanges>
+    <useOldClientName>false</useOldClientName>
+    <createWorkspace>true</createWorkspace>
+    <updateView>true</updateView>
+    <dontRenameClient>false</dontRenameClient>
+    <updateCounterValue>false</updateCounterValue>
+    <dontUpdateClient>false</dontUpdateClient>
+    <exposeP4Passwd>true</exposeP4Passwd>
+    <wipeBeforeBuild>false</wipeBeforeBuild>
+    <quickCleanBeforeBuild>false</quickCleanBeforeBuild>
+    <restoreChangedDeletedFiles>false</restoreChangedDeletedFiles>
+    <wipeRepoBeforeBuild>false</wipeRepoBeforeBuild>
+    <firstChange>-1</firstChange>
+    <fileLimit>0</fileLimit>
+    <excludedFilesCaseSensitivity>true</excludedFilesCaseSensitivity>
+    <slaveClientNameFormat>${basename}-${hash}</slaveClientNameFormat>
+    <lineEndValue>local</lineEndValue>
+    <useViewMask>false</useViewMask>
+    <useViewMaskForPolling>true</useViewMaskForPolling>
+    <useViewMaskForSyncing>false</useViewMaskForSyncing>
+    <useViewMaskForChangeLog>false</useViewMaskForChangeLog>
+    <pollOnlyOnMaster>false</pollOnlyOnMaster>
+  </scm>
+  <assignedNode>slave_6_86</assignedNode>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers>
+    <hudson.triggers.SCMTrigger>
+      <spec># every 10 minute 
+H/5 * * * *</spec>
+      <ignorePostCommitHooks>false</ignorePostCommitHooks>
+    </hudson.triggers.SCMTrigger>
+  </triggers>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>echo $PATH
+cd /home/slave_dir/workspace/check_foxtel_UI/APAC/Foxtel/UI/MAIN/build/gulp
+gulp default</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers>
+    <hudson.plugins.checkstyle.CheckStylePublisher plugin="checkstyle@3.49">
+      <healthy></healthy>
+      <unHealthy></unHealthy>
+      <thresholdLimit>low</thresholdLimit>
+      <pluginName>[CHECKSTYLE] </pluginName>
+      <defaultEncoding></defaultEncoding>
+      <canRunOnFailed>false</canRunOnFailed>
+      <usePreviousBuildAsReference>false</usePreviousBuildAsReference>
+      <useStableBuildAsReference>false</useStableBuildAsReference>
+      <useDeltaValues>false</useDeltaValues>
+      <thresholds plugin="analysis-core@1.92">
+        <unstableTotalAll></unstableTotalAll>
+        <unstableTotalHigh></unstableTotalHigh>
+        <unstableTotalNormal></unstableTotalNormal>
+        <unstableTotalLow></unstableTotalLow>
+        <unstableNewAll></unstableNewAll>
+        <unstableNewHigh></unstableNewHigh>
+        <unstableNewNormal></unstableNewNormal>
+        <unstableNewLow></unstableNewLow>
+        <failedTotalAll></failedTotalAll>
+        <failedTotalHigh>51</failedTotalHigh>
+        <failedTotalNormal>210</failedTotalNormal>
+        <failedTotalLow></failedTotalLow>
+        <failedNewAll></failedNewAll>
+        <failedNewHigh></failedNewHigh>
+        <failedNewNormal></failedNewNormal>
+        <failedNewLow></failedNewLow>
+      </thresholds>
+      <shouldDetectModules>false</shouldDetectModules>
+      <dontComputeNew>true</dontComputeNew>
+      <doNotResolveRelativePaths>false</doNotResolveRelativePaths>
+      <pattern>APAC/Foxtel/UI/MAIN/output/package/lint_reports/es/jslint-xml-eslint-ouptut.xml</pattern>
+    </hudson.plugins.checkstyle.CheckStylePublisher>
+    <hudson.plugins.emailext.ExtendedEmailPublisher plugin="email-ext@2.57.2">
+      <recipientList>zhe.wang@nagra.com, Bin.Yang@nagra.com</recipientList>
+      <configuredTriggers>
+        <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
+          <email>
+            <subject>$PROJECT_DEFAULT_SUBJECT</subject>
+            <body>$PROJECT_DEFAULT_CONTENT</body>
+            <recipientProviders>
+              <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
+              <hudson.plugins.emailext.plugins.recipients.ListRecipientProvider/>
+            </recipientProviders>
+            <attachmentsPattern></attachmentsPattern>
+            <attachBuildLog>false</attachBuildLog>
+            <compressBuildLog>false</compressBuildLog>
+            <replyTo>$PROJECT_DEFAULT_REPLYTO</replyTo>
+            <contentType>project</contentType>
+          </email>
+        </hudson.plugins.emailext.plugins.trigger.FailureTrigger>
+        <hudson.plugins.emailext.plugins.trigger.SuccessTrigger>
+          <email>
+            <subject>$PROJECT_DEFAULT_SUBJECT</subject>
+            <body>$PROJECT_DEFAULT_CONTENT</body>
+            <recipientProviders>
+              <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
+            </recipientProviders>
+            <attachmentsPattern></attachmentsPattern>
+            <attachBuildLog>false</attachBuildLog>
+            <compressBuildLog>false</compressBuildLog>
+            <replyTo>$PROJECT_DEFAULT_REPLYTO</replyTo>
+            <contentType>project</contentType>
+          </email>
+        </hudson.plugins.emailext.plugins.trigger.SuccessTrigger>
+      </configuredTriggers>
+      <contentType>text/html</contentType>
+      <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
+      <defaultContent>$DEFAULT_CONTENT
+
+Please check the eslint report here:
+http://10.12.2.195:8080/view/Foxtel/job/check_foxtel_UI/${BUILD_NUMBER}/checkstyleResult/
+$BUILD_NUMBER</defaultContent>
+      <attachmentsPattern>APAC/Foxtel/UI/MAIN/output/package/lint_reports/es/jslint-xml-eslint-ouptut.xml</attachmentsPattern>
+      <presendScript>$DEFAULT_PRESEND_SCRIPT</presendScript>
+      <postsendScript>$DEFAULT_POSTSEND_SCRIPT</postsendScript>
+      <attachBuildLog>false</attachBuildLog>
+      <compressBuildLog>false</compressBuildLog>
+      <replyTo>$DEFAULT_REPLYTO</replyTo>
+      <saveOutput>false</saveOutput>
+      <disabled>false</disabled>
+    </hudson.plugins.emailext.ExtendedEmailPublisher>
+  </publishers>
+  <buildWrappers/>
+</project>
